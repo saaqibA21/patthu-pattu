@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ta">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Test - பத்து பாட்டு</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .status {
+            background: #f0f0f0;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .audio-player {
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .song-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        audio {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .playlist {
+            margin-top: 2rem;
+        }
+
+        .playlist-item {
+            background: #f0f0f0;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .playlist-item:hover {
+            background: #e0e0e0;
+            transform: translateX(5px);
+        }
+
+        .playlist-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .instructions {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .instructions h3 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+        }
+
+        .instructions p {
+            color: #856404;
+            line-height: 1.6;
+        }
+
+        .success {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .success h3,
+        .success p {
+            color: #155724;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎵 Audio Test - பத்து பாட்டு</h1>
+
+        <div class="status" id="status">
+            <strong>Status:</strong> Ready to test audio
+        </div>
+
+        <div class="audio-player">
+            <div class="song-title" id="songTitle">Click a song below to play</div>
+            <audio id="audioPlayer" controls>
+                Your browser does not support audio playback.
+            </audio>
+            <div class="controls">
+                <button onclick="testAudio()">▶️ Test Audio</button>
+                <button onclick="stopAudio()">⏹️ Stop</button>
+            </div>
+        </div>
+
+        <div class="playlist">
+            <h3 style="margin-bottom: 1rem; color: #333;">Test Playlist:</h3>
+            <div class="playlist-item" onclick="playSong(0)">
+                <strong>Song 1:</strong> திருமுருகாற்றுப்படை
+            </div>
+            <div class="playlist-item" onclick="playSong(1)">
+                <strong>Song 2:</strong> பொருநராற்றுப்படை
+            </div>
+            <div class="playlist-item" onclick="playSong(2)">
+                <strong>Song 3:</strong> சிறுபணாற்றுப்படை
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>📝 Instructions:</h3>
+            <p>
+                1. Click "Test Audio" button above<br>
+                2. OR click any song in the playlist<br>
+                3. You should hear music playing<br>
+                4. If you hear sound, your audio works!<br>
+                5. If not, check your volume and browser settings
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Working audio URLs from Google's public storage
+        const songs = [
+            {
+                title: "திருமுருகாற்றுப்படை - Test Song 1",
+                url: "https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3"
+            },
+            {
+                title: "பொருநராற்றுப்படை - Test Song 2",
+                url: "https://commondatastorage.googleapis.com/codeskulptor-assets/Epoq-Lepidoptera.ogg"
+            },
+            {
+                title: "சிறுபணாற்றுப்படை - Test Song 3",
+                url: "https://commondatastorage.googleapis.com/codeskulptor-demos/pyman_assets/intromusic.ogg"
+            }
+        ];
+
+        let currentSong = 0;
+        const audio = document.getElementById('audioPlayer');
+        const status = document.getElementById('status');
+        const songTitle = document.getElementById('songTitle');
+
+        function testAudio() {
+            playSong(0);
+        }
+
+        function playSong(index) {
+            currentSong = index;
+            const song = songs[index];
+
+            audio.src = song.url;
+            songTitle.textContent = song.title;
+
+            audio.play()
+                .then(() => {
+                    status.innerHTML = '<strong style="color: green;">✅ SUCCESS!</strong> Audio is playing!';
+                    status.className = 'status success';
+                    updatePlaylistActive(index);
+                })
+                .catch(error => {
+                    status.innerHTML = '<strong style="color: red;">❌ ERROR:</strong> ' + error.message;
+                    console.error('Audio error:', error);
+                });
+        }
+
+        function stopAudio() {
+            audio.pause();
+            audio.currentTime = 0;
+            status.innerHTML = '<strong>Status:</strong> Audio stopped';
+            status.className = 'status';
+        }
+
+        function updatePlaylistActive(index) {
+            const items = document.querySelectorAll('.playlist-item');
+            items.forEach((item, i) => {
+                if (i === index) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        // Audio event listeners
+        audio.addEventListener('play', () => {
+            console.log('Audio started playing');
+        });
+
+        audio.addEventListener('error', (e) => {
+            console.error('Audio error:', e);
+            status.innerHTML = '<strong style="color: red;">❌ ERROR:</strong> Failed to load audio. Check console.';
+        });
+
+        audio.addEventListener('ended', () => {
+            status.innerHTML = '<strong>Status:</strong> Audio finished playing';
+            // Auto-play next song
+            const nextIndex = (currentSong + 1) % songs.length;
+            setTimeout(() => playSong(nextIndex), 1000);
+        });
+
+        // Volume control
+        audio.volume = 0.7;
+    </script>
+</body>
+
+</html>

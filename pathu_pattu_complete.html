@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>பத்து பாட்டு நூல்கள் - பண்டைய தமிழ் இலக்கியம்</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Crimson+Text:ital@0;1&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ancient-gold: #B8860B;
+            --manuscript-cream: #FBF8F3;
+            --tamil-maroon: #4A1A1A;
+            --text-brown: #3D2817;
+            --accent-saffron: #FF9F1C;
+            --shadow-dark: #2C0E0E;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            line-height: 1.8;
+            color: var(--text-brown);
+            background: var(--manuscript-cream);
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--tamil-maroon) 0%, var(--shadow-dark) 100%);
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--ancient-gold);
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: var(--manuscript-cream);
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-saffron);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        .hero {
+            margin-top: 80px;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--tamil-maroon) 0%, #5D2E2E 50%, #3D1A1A 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(90deg, rgba(184, 134, 11, 0.08) 0px, rgba(184, 134, 11, 0.08) 1px, transparent 1px, transparent 40px),
+                repeating-linear-gradient(0deg, rgba(184, 134, 11, 0.03) 0px, rgba(184, 134, 11, 0.03) 1px, transparent 1px, transparent 40px);
+            pointer-events: none;
+            animation: shimmer 6s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            color: var(--ancient-gold);
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            font-weight: 900;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--manuscript-cream);
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-saffron);
+            color: white;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 159, 28, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 159, 28, 0.5);
+        }
+
+        section {
+            padding: 5rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--tamil-maroon);
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ancient-gold), var(--accent-saffron));
+        }
+
+        #about {
+            background: var(--manuscript-cream);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--tamil-maroon);
+            margin: 1.5rem 0 1rem;
+        }
+
+        .about-visual {
+            background: linear-gradient(135deg, #FFF8F0 0%, #FAF6F1 100%);
+            padding: 3rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--ancient-gold);
+            box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .manuscript-icon {
+            font-size: 4rem;
+            margin: 1rem 0;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            border-top: 4px solid var(--ancient-gold);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--tamil-maroon);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        #books {
+            background: #F5F1EB;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .book-card {
+            background: white;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--accent-saffron);
+        }
+
+        .book-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .book-header {
+            background: linear-gradient(135deg, var(--tamil-maroon) 0%, var(--shadow-dark) 100%);
+            padding: 2rem;
+            color: white;
+            position: relative;
+        }
+
+        .book-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--ancient-gold);
+            opacity: 0.3;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+        }
+
+        .book-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .book-body {
+            padding: 2rem;
+        }
+
+        .book-body p {
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .poet-info {
+            background: #F9F5F0;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--text-brown);
+            border-left: 3px solid var(--ancient-gold);
+        }
+
+        #themes {
+            background: var(--manuscript-cream);
+        }
+
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .theme-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--accent-saffron);
+        }
+
+        .theme-box h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--tamil-maroon);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .theme-box p {
+            color: #555;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-saffron) 0%, var(--ancient-gold) 100%);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 30px rgba(255, 159, 28, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            z-index: 999;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(255, 159, 28, 0.6);
+        }
+
+        .chat-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 400px;
+            height: 600px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: none;
+            flex-direction: column;
+            z-index: 999;
+            overflow: hidden;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .chat-container.active {
+            display: flex;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--tamil-maroon) 0%, var(--shadow-dark) 100%);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .close-chat:hover {
+            transform: rotate(90deg);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            background: #FAFAF8;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            text-align: right;
+        }
+
+        .message.bot {
+            text-align: left;
+        }
+
+        .message-text {
+            display: inline-block;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            max-width: 80%;
+            line-height: 1.5;
+            font-size: 0.9rem;
+            word-wrap: break-word;
+        }
+
+        .user .message-text {
+            background: linear-gradient(135deg, var(--accent-saffron) 0%, var(--ancient-gold) 100%);
+            color: white;
+        }
+
+        .bot .message-text {
+            background: #E8E8E8;
+            color: var(--text-brown);
+        }
+
+        .chat-input-area {
+            padding: 1rem;
+            border-top: 1px solid #E0E0E0;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: 1px solid #D0D0D0;
+            border-radius: 6px;
+            padding: 0.7rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .chat-input:focus {
+            border-color: var(--accent-saffron);
+        }
+
+        .send-button {
+            background: var(--accent-saffron);
+            border: none;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .send-button:hover {
+            background: #E67E22;
+        }
+
+        .send-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .loading-dots {
+            display: inline-flex;
+            gap: 4px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-saffron);
+            animation: bounce 1.4s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% {
+                opacity: 0.5;
+                transform: translateY(0);
+            }
+            40% {
+                opacity: 1;
+                transform: translateY(-10px);
+            }
+        }
+
+        footer {
+            background: var(--tamil-maroon);
+            color: var(--manuscript-cream);
+            text-align: center;
+            padding: 3rem;
+            margin-top: 3rem;
+        }
+
+        footer h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--ancient-gold);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--manuscript-cream);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--ancient-gold);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .chat-container {
+                width: 90vw;
+                height: 70vh;
+                bottom: 80px;
+                right: 5vw;
+            }
+
+            .message-text {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">📖 பத்து பாட்டு</div>
+        <ul>
+            <li><a href="#about">பற்றி</a></li>
+            <li><a href="#books">பத்து நூல்கள்</a></li>
+            <li><a href="#themes">கருப்பொருள்</a></li>
+            <li><a href="#footer">தொடர்பு</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>பத்து பாட்டு</h1>
+            <p>சங்ககாலத் தமிழ் இலக்கியத்தின் பத்து பாட்டுகள்</p>
+            <a href="#about" class="cta-button">பரிசயமாகுங்கள்</a>
+        </div>
+    </div>
+
+    <section id="about">
+        <h2 class="section-title">பத்து பாட்டு பற்றி</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>பத்து பாட்டு என்றால் என்ன?</h3>
+                <p>பத்து பாட்டு (பத்துப்பாட்டு) என்பது சங்ககாலத் தமிழ் இலக்கியத்தின் பத்து நடுத்தர நீள பாட்டுகளின் தொகுப்பு ஆகும். இந்த பாட்டுகள் கி.மு 300 முதல் கி.பி 200 வரையுள்ள கால கட்டத்தில் இயற்றப்பட்டுள்ளன.</p>
+                <h3>மீள் கண்டுபிடிப்பு</h3>
+                <p>இந்த அரிய படைப்புகள் நூற்றாண்டுகளாக இழக்கப்பட்டிருந்தன. 19 ஆம் நூற்றாண்டில் தமிழ் அறிஞர் உ.வே. சாமிநாதையர் இந்த பாட்டுகளை மீட்டுக்கொணர்ந்தார்.</p>
+                <h3>இலக்கிய முக்கியத்துவம்</h3>
+                <p>பத்து பாட்டு தமிழ் இலக்கியத்தின் மூலாधாரமாக உள்ளது. இது பண்டைய தமிழ் சமூகத்தின் கவிதை சாமர்த்தியம், மொழி செழுமை, மற்றும் பண்பாட்டு மூல்யங்களை பிரதிபலிக்கிறது.</p>
+            </div>
+            <div class="about-visual">
+                <div class="manuscript-icon">📜</div>
+                <h3 style="font-family: 'Playfair Display', serif; color: var(--tamil-maroon);">பண்டைய ஞானம்</h3>
+                <p style="margin-top: 1rem;">நூற்றாண்டுக்கு பழமையான ஓலைச்சுவடி களில் பாதுகாக்கப்பட்ட செய்யுட்கள்</p>
+                <div class="manuscript-icon">✨</div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🕰️</div>
+                <h3>பண்டைய காலம்</h3>
+                <p>கி.மு 300 முதல் கி.பி 200 வரையுள்ள சங்ககாலத்தில் இயற்றப்பட்டவை</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>இலக்கிய சிறப்பு</h3>
+                <p>பல்வேறு கவிதை பாணிகள் மற்றும் உயர்ந்த தமிழ் மொழி ஆற்றல் கொண்ட பத்து நூல்கள்</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">❤️</div>
+                <h3>மனித உணர்வுகள்</h3>
+                <p>அன்பு, இயற்கை, நெஞ்சுறுதி, மற்றும் மனித உறவுகளின் விரிவான ஆய்வு</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="books">
+        <h2 class="section-title">பத்து நூல்கள்</h2>
+        <div class="books-grid">
+            <div class="book-card">
+                <div style="position: relative;">
+                    <div class="book-number">1</div>
+                    <div class="book-header">
+                        <h3>திருமுருகாற்றுப்படை</h3>
+                        <p>முருகனுக்கான பாட்டு</p>
+                    </div>
+                </div>
+                <div class="book-body">
+                    <p>சங்ககாலத்தின் மிக முக்கியமான படைப்புகளில் ஒன்று, 5-6 ஆம் நூற்றாண்டு இயற்றப்பட்டது।</p>
+                    <div class="poet-info"><strong>கவிஞர்:</strong> நக்கீரர்</div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div style="position: relative;">
+                    <div class="book-number">2</div>
+                    <div class="book-header">
+                        <h3>பொருநராற்றுப்படை</h3>
+                        <p>அரசனுக்கான பாட்டு</p>
+                    </div>
+                </div>
+                <div class="book-body">
+                    <p>250 வரிகளைக் கொண்ட தமிழ் கவிதைப் பணி, சோழ மன்னர் கரிகாள சோழனின் புகழை பாடுவது.</p>
+                    <div class="poet-info"><strong>கவிஞர்:</strong> முதத்தாமக்கன்னியார்</div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div style="position: relative;">
+                    <div class="book-number">3</div>
+                    <div class="book-header">
+                        <h3>சிறுபணாற்றுப்படை</h3>
+                        <p>சிறிய பாடல் கலைஞர்களுக்கான பாட்டு</p>
+                    </div>
+                </div>
+                <div class="book-body">
+                    <p>அலைகற்ற பாடல் கலைஞர்களைப் பற்றி எழுதப்பட்ட சிறுந்த பணி।</p>
+                    <div class="poet-info"><strong>விஷயம்:</strong> பாடல் கலை மரபு</div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div style="position: relative;">
+                    <div class="book-number">4</div>
+                    <div class="book-header">
+                        <h3>பெரும்பணாற்றுப்படை</h3>
+                        <p>பெரிய பாடல் கலைஞர்களுக்கான பாட்டு</p>
+                    </div>
+                </div>
+                <div class="book-body">
+                    <p>சிறுபணாற்றுப்படைக்கான தோழக் பணி, பெரிய பாடல் கலைஞர்களை பற்றிக் கூறுவது।</p>
+                    <div class="poet-info"><strong>விஷயம்:</strong> அரசு ஆதாரம் மற்றும் கலை மரபு</div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div style="position: relative;">
+                    <div class="book-number">5</div>
+                    <div class="book-header">
+                        <h3>முல்லைப்பாட்டு</h3>
+                        <p>மல்லிகை பூவின் பாட்டு</p>
+                    </div>
+                </div>
+                <div class="book-body">
+                    <p>பாசனிலத்தின் விவரணை மற்றும் பிரேமபாவ விஷயங்களுக்கான பணி।</p>
+                    <div class="poet-info"><strong>விஷயம்:</strong> பாசனிலம் மற்றும் அன்பு</div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div style="position: relative;">
+                    <div class="book-number">6</div>
+                    <div class="book-header">
+                        <h3>நெடுனளப்பாட்டு</h3>
+                        <p>நீண்ட பாட்டு</p>
+                    </div>
+                </div>
+                <div class="book-body">
+                    <p>பண்டைய தமிழ் அரசாங்கங்களின் பெருமை மற்றும் செல்வம் பற்றிய பணி।</p>
+                    <div class="poet-info"><strong>விஷயம்:</strong> அரச வீரம்</div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div style="position: relative;">
+                    <div class="book-number">7</div>
+                    <div class="book-header">
+                        <h3>அகநானூறு</h3>
+                        <p>நிறைவேறாத அன்பின் பாட்டு</p>
+                    </div>
+                </div>
+                <div class="book-body">
+                    <p>நிறைவேறாத அன்பு மற்றும் ஏக்கத்தின் உணர்வுகளைப் பாடுவது।</p>
+                    <div class="poet-info"><strong>விஷயம்:</strong> பிரேம உணர்வுகள்</div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div style="position: relative;">
+                    <div class="book-number">8</div>
+                    <div class="book-header">
+                        <h3>கிளைப்பாட்டு</h3>
+                        <p>நட்பின் பாட்டு</p>
+                    </div>
+                </div>
+                <div class="book-body">
+                    <p>பண்டைய தமிழ் சமூகத்தில் நட்பு மற்றும் தொடர்பினை வாழ்த்துவது।</p>
+                    <div class="poet-info"><strong>விஷயம்:</strong> நட்பு மற்றும் சமூக மதிப்புகள்</div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div style="position: relative;">
+                    <div class="book-number">9</div>
+                    <div class="book-header">
+                        <h3>மலைபடுகடம்</h3>
+                        <p>மலையின் பாட்டு</p>
+                    </div>
+                </div>
+                <div class="book-body">
+                    <p>583 வரிகளைக் கொண்ட கவிதைப் பணி, மலைப் பரந்தையிலான ஒலிகள் பற்றிய விவரணை।</p>
+                    <div class="poet-info"><strong>கவிஞர்:</strong> பெருங்கோ சிக நாரர்</div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div style="position: relative;">
+                    <div class="book-number">10</div>
+                    <div class="book-header">
+                        <h3>பரிபாடல்</h3>
+                        <p>சிறப்பியலான பாட்டு</p>
+                    </div>
+                </div>
+                <div class="book-body">
+                    <p>பத்து பாட்டுக் கூட்டத்தின் இறுதிப் பணி, இசைக்கூறாகவும் தத்துவசாரமாகவும் அமைந்த பணி।</p>
+                    <div class="poet-info"><strong>விஷயம்:</strong> தத்துவம் மற்றும் ஆன்மிக ஞானம்</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="themes">
+        <h2 class="section-title">முக்கிய கருப்பொருள்கள்</h2>
+        <div class="themes-grid">
+            <div class="theme-box">
+                <h3>🌿 இயற்கை அழகு</h3>
+                <p>தமிழ் நிலங்களின் விரிவான விவரணைகள் மற்றும் பருவங்களின் உயிர்ந்த விளக்கங்கள்.</p>
+            </div>
+            <div class="theme-box">
+                <h3>❤️ அன்பு மற்றும் பிரேமம்</h3>
+                <p>அன்பின் பல்வேறு பரிமாணங்கள் - உண்மையான அன்பு முதல் நிறைவேறாத ஆவல் வரை।</p>
+            </div>
+            <div class="theme-box">
+                <h3>⚔️ வீரம் மற்றும் போர்</h3>
+                <p>வீரர்கள் மற்றும் மன்னர்களின் சாதனைகளை பாடுவது, போர்க்கலை மற்றும் தைர்யம்।</p>
+            </div>
+            <div class="theme-box">
+                <h3>🙏 சரணாகதி</h3>
+                <p>மத மற்றும் ஆன்மிக விஷயங்கள், தெய்வத்துக்கான சரணாகதி மற்றும் கோயிலின் முக்கியத்துவம்।</p>
+            </div>
+            <div class="theme-box">
+                <h3>👑 ஆதரவு முறை</h3>
+                <p>கவிஞர்களுக்கான அரச ஆதாரம் மற்றும் கலையையும் இலக்கியத்தையும் பாதுகாக்கும் முறை।</p>
+            </div>
+            <div class="theme-box">
+                <h3>🎭 மனித உணர்வு</h3>
+                <p>மனித உணர்வுகளின் முழு நிறத்தை ஆய்வு செய்தல் - சுகம் முதல் துன்பம் வரை।</p>
+            </div>
+        </div>
+    </section>
+
+    <button class="chat-button" onclick="toggleChat()">💬</button>
+    
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <h3>பத்து பாட்டு உதவி</h3>
+            <button class="close-chat" onclick="toggleChat()">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="message-text">
+                    வணக்கம்! 🙏 நான் உங்கள் பத்து பாட்டு உதவி. பத்து பாட்டு, அதன் பொருள், கவிஞர்கள், கருப்பொருள்கள், அல்லது சங்ககாலத் தமிழ் இலக்கியத்தின் எந்த விஷயமும் பற்றி என்னிடம் கேள்வி கேளுங்கள்!
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="chatInput" placeholder="பத்து பாட்டு பற்றி கேளுங்கள்..." onkeypress="handleKeyPress(event)">
+            <button class="send-button" id="sendBtn" onclick="sendMessage()">அனுப்பு</button>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <h3>பத்து பாட்டு நூல்கள்</h3>
+        <p>தமிழ் இலக்கியப் பாரம்பர்య பேணல்</p>
+        <div class="footer-links">
+            <a href="#about">பற்றி</a>
+            <a href="#books">பத்து பாட்டுகள்</a>
+            <a href="#themes">கருப்பொருள்</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.9;">
+            © 2025 பத்து பாட்டு பாரம்பர்य. சங்ககாலத் தமிழ் இலக்கியப் பரம்பரையை கொண்டாடுகிறோம்.
+        </p>
+    </footer>
+
+    <script>
+        const MODEL = 'claude-sonnet-4-20250514';
+
+        function toggleChat() {
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.classList.toggle('active');
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        async function sendMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const userMessage = chatInput.value.trim();
+            
+            if (!userMessage) return;
+
+            addMessage(userMessage, 'user');
+            chatInput.value = '';
+            sendBtn.disabled = true;
+            addMessage('', 'bot', true);
+
+            try {
+                const response = await fetch("https://api.anthropic.com/v1/messages", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        model: MODEL,
+                        max_tokens: 1024,
+                        system: `நீ பத்து பாட்டு மற்றும் சங்ககாலத் தமிழ் இலக்கியத்தில் ஒரு வல்லுநர் உதவிக் கொடுப்பவர். பத்து பாட்டுவின் பத்து நூல்கள்: 1) திருமுருகாற்றுப்படை 2) பொருநராற்றுப்படை 3) சிறுபணாற்றுப்படை 4) பெரும்பணாற்றுப்படை 5) முல்லைப்பாட்டு 6) நெடுனளப்பாட்டு 7) அகநானூறு 8) கிளைப்பாட்டு 9) மலைபடுகடம் 10) பரிபாடல். உனது பொறுப்பு: பத்து பாட்டுக்கு தொடர்பான கேள்விகளுக்கு மட்டுமே பதில் அளிக்க. தமிழ் மொழிதை பதிலளிக்க. தெளிவாக விளக்க.`,
+                        messages: [
+                            { role: "user", content: userMessage }
+                        ]
+                    })
+                });
+
+                sendBtn.disabled = false;
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error?.message || 'API Error');
+                }
+
+                const data = await response.json();
+                
+                if (data.content && data.content[0] && data.content[0].text) {
+                    const assistantMessage = data.content[0].text;
+                    const messages = document.querySelectorAll('.message.bot');
+                    const lastBotMessage = messages[messages.length - 1];
+                    if (lastBotMessage && lastBotMessage.querySelector('.loading-dots')) {
+                        lastBotMessage.remove();
+                    }
+                    addMessage(assistantMessage, 'bot');
+                } else {
+                    const lastBotMessage = document.querySelectorAll('.message.bot')[document.querySelectorAll('.message.bot').length - 1];
+                    if (lastBotMessage) lastBotMessage.remove();
+                    addMessage("பதிலை பெற முடியவில்லை. மீண்டும் முயற்சி செய்யவும்.", 'bot');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                const lastBotMessage = document.querySelectorAll('.message.bot')[document.querySelectorAll('.message.bot').length - 1];
+                if (lastBotMessage) lastBotMessage.remove();
+                addMessage(`பிழை: ${error.message}`, 'bot');
+                sendBtn.disabled = false;
+            }
+        }
+
+        function addMessage(text, sender, isLoading = false) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+
+            const messageText = document.createElement('div');
+            messageText.className = 'message-text';
+
+            if (isLoading) {
+                messageText.innerHTML = '<div class="loading-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
+            } else {
+                messageText.textContent = text;
+            }
+
+            messageDiv.appendChild(messageText);
+            chatMessages.appendChild(messageDiv);
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    </script>
+</body>
+</html>
