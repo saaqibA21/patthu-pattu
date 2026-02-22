@@ -14,28 +14,49 @@
 </head>
 
 <body>
-    <!-- Language Toggle -->
-    <div class="language-toggle">
-        <button class="lang-btn active" data-lang="ta">தமிழ்</button>
-        <button class="lang-btn" data-lang="en">English</button>
-    </div>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollBar"></div>
 
-    <!-- Navigation -->
-    <nav id="mainNav">
-        <div class="logo">📖 பத்துப்பாட்டு</div>
-        <ul class="nav-links">
-            <li><a href="#about" data-ta="பற்றி" data-en="About">பற்றி</a></li>
-            <li><a href="#books" data-ta="பத்து நூல்கள்" data-en="Ten Books">பத்து நூல்கள்</a></li>
-            <li><a href="#timeline" data-ta="காலவரிசை" data-en="Timeline">காலவரிசை</a></li>
-            <li><a href="#songs" data-ta="பாடல்கள்" data-en="Songs">பாடல்கள்</a></li>
-            <li><a href="#gallery" data-ta="படக்காட்சி" data-en="Gallery">படக்காட்சி</a></li>
-            <li><a href="#themes" data-ta="கருப்பொருள்" data-en="Themes">கருப்பொருள்</a></li>
-        </ul>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="தேடுங்கள்..." class="search-input">
-            <button class="search-btn">🔍</button>
+    <!-- Main Header -->
+    <header class="main-header" id="mainHeader">
+        <div class="header-container">
+            <div class="logo-group">
+                <button class="menu-toggle-btn" id="menuToggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <div class="logo">📖 பத்துப்பாட்டு</div>
+            </div>
+
+            <nav class="nav-wrapper" id="navWrapper">
+                <ul class="nav-list">
+                    <li><a href="#about" data-ta="பற்றி" data-en="About">பற்றி</a></li>
+                    <li><a href="#books" data-ta="பத்து நூல்கள்" data-en="Ten Books">பத்து நூல்கள்</a></li>
+                    <li><a href="#timeline" data-ta="காலவரிசை" data-en="Timeline">காலவரிசை</a></li>
+                    <li><a href="#songs" data-ta="பாடல்கள்" data-en="Songs">பாடல்கள்</a></li>
+                    <li><a href="#gallery" data-ta="படக்காட்சி" data-en="Gallery">படக்காட்சி</a></li>
+                    <li><a href="#themes" data-ta="கருப்பொருள்" data-en="Themes">கருப்பொருள்</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="தேடுங்கள்..." class="search-input">
+                    <button class="search-btn" id="searchBtn">🔍</button>
+                </div>
+                <div class="utility-toggles">
+                    <button class="theme-btn" id="themeToggle" title="Theme">🌓</button>
+                    <div class="lang-pills">
+                        <button class="lang-pill active" data-lang="ta">தமிழ்</button>
+                        <button class="lang-pill" data-lang="en">EN</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
+    </header>
+
+    <div class="nav-overlay" id="navOverlay"></div>
 
     <!-- Hero Section -->
     <div class="hero">
@@ -249,8 +270,21 @@
         </div>
     </section>
 
-    <!-- Chat Button -->
-    <button class="chat-button" onclick="toggleChat()">💬</button>
+    <!-- Floating Actions -->
+    <div class="floating-actions">
+        <button class="back-to-top" id="backToTop" title="மேலே செல்ல">↑</button>
+        <button class="chat-button" onclick="toggleChat()">💬</button>
+    </div>
+
+    <!-- Global Loader -->
+    <div class="loader-overlay" id="loader">
+        <div class="ancient-loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="loader-text">📖...</div>
+        </div>
+    </div>
 
     <!-- Chat Container -->
     <div class="chat-container" id="chatContainer">

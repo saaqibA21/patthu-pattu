@@ -289,6 +289,19 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeAudioPlayer();
     initializeChat();
     initializeScrollReveal();
+    initializeMobileMenu();
+    initializeBackToTop();
+    initializeTheme();
+    initializeScrollProgress();
+
+    // Hide loader after a short delay to ensure everything is rendered
+    setTimeout(() => {
+        const loader = document.getElementById('loader');
+        if (loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => loader.style.display = 'none', 500);
+        }
+    }, 1200);
 });
 
 // Scroll Reveal Animation
@@ -302,17 +315,110 @@ function initializeScrollReveal() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('reveal-active');
-                // Once revealed, no need to keep observing
-                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    document.querySelectorAll('section, .feature-card, .timeline-item').forEach(el => {
+    // Apply to sections and key blocks
+    const revealElements = document.querySelectorAll('section, .feature-card, .book-card, .timeline-item, .theme-box, .about-visual');
+    revealElements.forEach(el => {
         el.classList.add('reveal-section');
         observer.observe(el);
     });
 }
+
+// Mobile Menu Functionality
+function initializeMobileMenu() {
+    const menuToggle = document.getElementById('menuToggle');
+    const navWrapper = document.getElementById('navWrapper');
+    const navOverlay = document.getElementById('navOverlay');
+    const navLinks = document.querySelectorAll('.nav-list a');
+
+    if (menuToggle && navWrapper && navOverlay) {
+        const toggleMenu = () => {
+            menuToggle.classList.toggle('active');
+            navWrapper.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.style.overflow = navWrapper.classList.contains('active') ? 'hidden' : 'auto';
+        };
+
+        menuToggle.addEventListener('click', toggleMenu);
+        navOverlay.addEventListener('click', toggleMenu);
+
+        // Close menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navWrapper.classList.remove('active');
+                navOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    }
+}
+
+// Back to Top Functionality
+function initializeBackToTop() {
+    const backToTop = document.getElementById('backToTop');
+
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+}
+
+// Theme Management
+function initializeTheme() {
+    const themeToggle = document.getElementById('themeToggle');
+    const currentTheme = localStorage.getItem('theme') || 'light';
+
+    if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        if (themeToggle) themeToggle.textContent = '☀️';
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeToggle.textContent = '🌓';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.textContent = '☀️';
+            }
+        });
+    }
+}
+
+// Scroll Progress Tracker
+function initializeScrollProgress() {
+    const scrollBar = document.getElementById('scrollBar');
+
+    if (scrollBar) {
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            scrollBar.style.width = scrolled + "%";
+        });
+    }
+}
+
 
 // Load Books
 function loadBooks() {
@@ -587,7 +693,7 @@ function loadGallery() {
 
 // Initialize Language Toggle
 function initializeLanguageToggle() {
-    const langButtons = document.querySelectorAll('.lang-btn');
+    const langButtons = document.querySelectorAll('.lang-pill');
 
     langButtons.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -601,6 +707,13 @@ function initializeLanguageToggle() {
             updateLanguage();
         });
     });
+
+    // Sync state on load
+    const activeBtn = document.querySelector(`.lang-pill[data-lang="${currentLang}"]`);
+    if (activeBtn) {
+        langButtons.forEach(b => b.classList.remove('active'));
+        activeBtn.classList.add('active');
+    }
 }
 
 // Update Language
@@ -623,13 +736,13 @@ function updateLanguage() {
 
 // Initialize Navigation
 function initializeNavigation() {
-    const nav = document.getElementById('mainNav');
+    const header = document.getElementById('mainHeader');
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
-            nav.classList.add('scrolled');
+            if (header) header.classList.add('scrolled');
         } else {
-            nav.classList.remove('scrolled');
+            if (header) header.classList.remove('scrolled');
         }
     });
 
@@ -637,7 +750,10 @@ function initializeNavigation() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const target = document.querySelector(targetId);
             if (target) {
                 target.scrollIntoView({
                     behavior: 'smooth',
