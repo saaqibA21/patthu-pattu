@@ -10,7 +10,7 @@ __pycache__/
 *.pyc
 
 # Local Model Data
-pathu_pattu_model_data/
+# pathu_pattu_model_data/
 knowledge_base.json
 knowledge_base_ocr.json
 

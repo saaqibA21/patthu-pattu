@@ -1,0 +1,7 @@
+{
+  "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "total_chunks": 6150,
+  "dimension": 384,
+  "total_pages": 814,
+  "built_at": "2026-02-23 11:48:31"
+}
