@@ -137,9 +137,13 @@ class PathuPattuAI {
 
         } catch (error) {
             console.warn('Could not connect to backend server:', error);
+            const slowMessage = language === 'ta'
+                ? "மன்னிக்கவும், எனது அறிவுத் தளம் தற்போது விழித்துக் கொள்கிறது (Render Free Tier). தயவுசெய்து 60 வினாடிகள் கழித்து மீண்டும் முயற்சிக்கவும்..."
+                : "The AI Scholar is currently waking up from its library (Render Free Tier). Please wait about 60 seconds for the initial load and try again...";
+
             return {
-                answer: "My advanced knowledge base is currently initializing. Please try again in 30 seconds. In the meantime, here is what I know: " + this.getSmartFallback(userQuestion, language),
-                engine: 'Offline Mode'
+                answer: slowMessage + "\n\n**இப்போதைக்கு எனக்கு தெரிந்தவை / For now, I know:**\n" + this.getSmartFallback(userQuestion, language),
+                engine: 'Waking Up...'
             };
         }
     }
