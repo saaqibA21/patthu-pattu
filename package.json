@@ -5,6 +5,7 @@
   "main": "ai_chatbot.js",
   "scripts": {
     "start": "bash start.sh",
+    "build": "echo 'Build skipped on Vercel'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
