@@ -4,6 +4,7 @@
   "description": "This is a **premium, feature-rich website** dedicated to the Pathu Pattu (Ten Classical Tamil Literary Works) from the Sangam Era. The website showcases ancient Tamil literature with modern web design aesthetics.",
   "main": "ai_chatbot.js",
   "scripts": {
+    "start": "bash start.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

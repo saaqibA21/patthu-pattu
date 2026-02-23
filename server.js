@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.static('./')); // Serve the website files
 
 // Chat Endpoint (Connected to Python RAG Model)
 app.post('/api/chat', async (req, res) => {

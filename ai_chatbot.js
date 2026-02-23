@@ -9,7 +9,10 @@
 // 3. Copy your key
 // 4. Replace 'YOUR_GEMINI_API_KEY_HERE' below
 const CHAT_CONFIG = {
-    serverUrl: 'http://localhost:3000/api/chat'
+    // Automatically uses local server while developing, or production server when hosted
+    serverUrl: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:3000/api/chat'
+        : '/api/chat'
 };
 
 
