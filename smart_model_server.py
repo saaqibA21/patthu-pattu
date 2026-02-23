@@ -40,6 +40,9 @@ ok = model.load()
 OPENAI_KEY = os.getenv("OPENAI_API_KEY", "")
 GEMINI_KEY = os.getenv("GEMINI_API_KEY", "")
 
+# Simple Response Cache to speed up repeated questions
+response_cache = {}
+
 openai_client = None
 if OPENAI_KEY:
     openai_client = OpenAI(api_key=OPENAI_KEY)
@@ -73,7 +76,7 @@ MASTERFUL RESPONSE:"""
             model="gpt-4o-mini",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.2,
-            max_tokens=1000
+            max_tokens=600 # Faster generation
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
@@ -273,10 +276,17 @@ def info():
 @app.route("/ask", methods=["POST"])
 def ask():
     data = request.json
-    q = data.get("question", "")
-    results = model.search(q, top_k=8)
+    q = data.get("question", "").strip()
+    
+    # Check cache first (for exact matches)
+    if q in response_cache:
+        print(f"⚡ Cache Hit for: {q[:30]}...")
+        return jsonify(response_cache[q])
+
+    results = model.search(q, top_k=5) # Reduced from 8 for speed
     pages = sorted(set(r["page"] for r in results))
     context = "\n".join([f"[Page {r['page']}] {r['text']}" for r in results])
+    context = context[:4000] # Cap context for faster processing
     
     # Priority 1: OpenAI
     ans = try_openai(q, context)
@@ -292,7 +302,10 @@ def ask():
         ans = smart_format(q, results)
         engine = "Local Extractor"
     
-    return jsonify({"answer": ans, "pages": pages, "engine": engine})
+    # Store in cache
+    response_cache[q] = {"answer": ans, "pages": pages, "engine": engine}
+    
+    return jsonify(response_cache[q])
 
 if __name__ == "__main__":
     app.run(port=5000)
