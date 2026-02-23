@@ -8,7 +8,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: '*', // Allows all origins (including Vercel)
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 app.use(express.static('./')); // Serve the website files
 
@@ -23,9 +27,9 @@ app.post('/api/chat', async (req, res) => {
 
         console.log(`📡 Querying RAG Model for: "${message.substring(0, 50)}..."`);
 
-        // Check if Python server is up with a short timeout
+        // Check if Python server is up with a longer timeout for AI thinking
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 2000); // 2 second check
+        const timeoutId = setTimeout(() => controller.abort(), 12000); // 12 seconds
 
         try {
             const response = await fetch(`http://localhost:5000/ask`, {
