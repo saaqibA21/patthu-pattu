@@ -2,10 +2,12 @@
 // Intelligent retrieval-augmented generation backend
 
 const CHAT_CONFIG = {
-    // Connects to local server for dev, or the Render production backend
-    serverUrl: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? 'http://localhost:3000/api/chat'
-        : 'https://patthu-pattu.onrender.com/api/chat'
+    // Connects to local server for dev/LAN, or the Render production backend.
+    // Pro Tip: Using a relative path "/api/chat" automatically uses the current 
+    // hostname (localhost, LAN IP, or Render URL), making it work on all devices!
+    serverUrl: window.location.hostname.includes('vercel.app')
+        ? 'https://patthu-pattu.onrender.com/api/chat'
+        : '/api/chat'
 };
 
 
