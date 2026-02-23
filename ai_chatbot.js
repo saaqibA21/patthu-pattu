@@ -1,13 +1,6 @@
-// PATHU PATTU AI CHATBOT - GEMINI API INTEGRATION
-// Quick start implementation for intelligent chatbot
+// PATHU PATTU AI CHATBOT - ADVANCED SCHOLAR RAG (OPENAI POWERED)
+// Intelligent retrieval-augmented generation backend
 
-// ==============================================
-// STEP 1: GET YOUR FREE GEMINI API KEY
-// ==============================================
-// 1. Go to: https://makersuite.google.com/app/apikey
-// 2. Click "Create API Key"
-// 3. Copy your key
-// 4. Replace 'YOUR_GEMINI_API_KEY_HERE' below
 const CHAT_CONFIG = {
     // Connects to local server for dev, or the Render production backend
     serverUrl: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
@@ -447,28 +440,19 @@ function clearAllData() {
 // ==============================================
 
 console.log(`
-🤖 PATHU PATTU AI CHATBOT READY!
+🤖 PATHU PATTU AI SCHOLAR READY!
 
-SETUP:
-1. Get your free Gemini API key from: https://makersuite.google.com/app/apikey
-2. Replace 'YOUR_GEMINI_API_KEY_HERE' in GEMINI_CONFIG above
-3. Include this file in your HTML: <script src="ai_chatbot.js"></script>
-4. Replace your sendMessage() function with sendMessageAI()
+ARCHITECTURE:
+✅ Advanced RAG (Retrieval-Augmented Generation)
+✅ Primary Brain: OpenAI GPT-4o-mini
+✅ 814 Pages of Library Knowledge Base
+✅ Automatic Language Detection
 
 ADMIN COMMANDS (in browser console):
 - viewAnalytics()     - See usage statistics
-- exportData()        - Download training data
-- clearAllData()      - Clear all stored data
+- exportData()        - Download interaction data
+- clearAllData()      - Clear local session data
 
-FEATURES:
-✅ Intelligent AI responses using Gemini
-✅ Bilingual support (Tamil & English)
-✅ Conversation history
-✅ User feedback collection
-✅ Analytics and insights
-✅ Training data export
-✅ Offline fallback
-
-The AI will learn from user interactions and you can export the data
-to fine-tune your own custom model later!
+The AI Scholar is now securely connected to the production backend.
+API keys are managed safely in the cloud (no longer exposed in browser).
 `);
