@@ -17,50 +17,46 @@ CHUNKS_PATH = os.path.join(MODEL_DIR, "chunks.pkl")
 META_PATH = os.path.join(MODEL_DIR, "meta.json")
 
 class LocalPathuPattuModel:
-    """
-    Fully local Pathu Pattu Q&A model.
-    - No internet required
-    - No API key needed
-    - Answers come directly from the OCR-scanned book
-    """
-    
     def __init__(self):
         self.index = None
         self.chunks = None
-        self.embedder = None
-        self.meta = {}
         self.ready = False
+        self.model_name = "text-embedding-3-small"
     
     def load(self):
-        # Check model exists
-        if not os.path.exists(INDEX_PATH):
-            print("❌ Model not built yet. Run: python build_model.py")
-            return False
-        
-        print("⚙️  Loading local model...")
+        turbo_index = "pathu_pattu_model_data/faiss_index_turbo.bin"
+        if not os.path.exists(turbo_index): return False
         
         import faiss
-        from sentence_transformers import SentenceTransformer
-        
-        # Load FAISS index
-        self.index = faiss.read_index(INDEX_PATH)
-        print(f"  ✅ Vector index loaded ({self.index.ntotal} chunks)")
-        
-        # Load chunks
-        with open(CHUNKS_PATH, "rb") as f:
+        self.index = faiss.read_index(turbo_index)
+        with open("pathu_pattu_model_data/chunks.pkl", "rb") as f:
             self.chunks = pickle.load(f)
         
-        # Load metadata
-        with open(META_PATH, encoding="utf-8") as f:
-            self.meta = json.load(f)
-        
-        # Load embedding model
-        print(f"  🔽 Loading embedder: {self.meta['embedding_model']}")
-        self.embedder = SentenceTransformer(self.meta["embedding_model"])
-        
         self.ready = True
-        print(f"  ✅ Model ready! Built from {self.meta['total_chunks']} text chunks")
+        print(f"🚀 TURBO ENGINE LOADED: {self.index.ntotal} vectors")
         return True
+    
+    def search(self, query, top_k=5):
+        if not self.ready: return []
+        
+        # Use OpenAI to embed the query instead of local CPU
+        from openai import OpenAI
+        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        
+        try:
+            resp = client.embeddings.create(input=[query], model=self.model_name)
+            q_emb = np.array([resp.data[0].embedding], dtype="float32")
+            
+            scores, indices = self.index.search(q_emb, top_k)
+            
+            results = []
+            for score, idx in zip(scores[0], indices[0]):
+                if idx >= 0:
+                    results.append({"text": self.chunks[idx]["text"], "page": self.chunks[idx]["page"], "score": float(score)})
+            return results
+        except Exception as e:
+            print(f"Turbo Search Error: {e}")
+            return []
     
     def search(self, query, top_k=8):
         """Find the most relevant chunks for a query."""
