@@ -333,10 +333,6 @@ async function sendMessageAI() {
             enrichedAnswer += `\n\n--- \n**${pagesTitle}:** ${result.pages.join(', ')}`;
         }
 
-        if (result.engine) {
-            enrichedAnswer += `\n\n<small style="opacity: 0.6; font-style: italic;">Engine: ${result.engine}</small>`;
-        }
-
         // Display AI response
         displayMessage(enrichedAnswer, 'bot');
 
@@ -446,7 +442,7 @@ console.log(`
 
 ARCHITECTURE:
 ✅ Advanced RAG (Retrieval-Augmented Generation)
-✅ Primary Brain: OpenAI GPT-4o-mini
+✅ Primary Brain: Custom Scholar Engine
 ✅ 814 Pages of Library Knowledge Base
 ✅ Automatic Language Detection
 
