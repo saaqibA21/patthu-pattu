@@ -21,42 +21,50 @@ app.post('/api/chat', async (req, res) => {
             return res.status(400).json({ error: 'Message is required' });
         }
 
-        console.log(`📡 Querying RAG Model (Port 5000) for: "${message.substring(0, 50)}..."`);
+        console.log(`📡 Querying RAG Model for: "${message.substring(0, 50)}..."`);
 
-        // Call the Python RAG Server
-        const response = await fetch(`http://localhost:5000/ask`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                question: message,
-                language: language || 'en'
-            })
-        });
+        // Check if Python server is up with a short timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2000); // 2 second check
 
-        const data = await response.json();
+        try {
+            const response = await fetch(`http://localhost:5000/ask`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    question: message,
+                    language: language || 'en'
+                }),
+                signal: controller.signal
+            });
+            clearTimeout(timeoutId);
 
-        if (!response.ok) {
-            console.error('RAG Model Error:', data);
-            return res.status(response.status).json({
-                error: 'RAG Model Error',
-                details: data
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.error || 'RAG Error');
+
+            res.json({
+                answer: data.answer,
+                pages: data.pages,
+                engine: data.engine
+            });
+
+        } catch (fetchError) {
+            clearTimeout(timeoutId);
+            console.warn('AI Brain not ready yet:', fetchError.message);
+
+            // If it's a connection error or timeout, return "Initializing" status
+            res.status(503).json({
+                error: 'AI_INITIALIZING',
+                message: 'The AI Scholar is currently loading its massive library. This happens once after a period of inactivity. Please try again in 15 seconds.',
+                engine: 'Loading...'
             });
         }
 
-        // Return the synthesized answer to the frontend
-        res.json({
-            answer: data.answer,
-            pages: data.pages,
-            engine: data.engine
-        });
-
     } catch (error) {
-        console.error('Server Internal Error (Check if Python server is running on 5000):', error);
+        console.error('Server Internal Error:', error);
         res.status(500).json({
-            error: 'AI Server Offline',
-            message: 'My advanced knowledge base is currently initializing. Please try again in 30 seconds.'
+            error: 'Server Error',
+            message: 'An unexpected error occurred. Please refresh the page.'
         });
     }
 });

@@ -110,6 +110,14 @@ class PathuPattuAI {
                 })
             });
 
+            if (response.status === 503) {
+                const initData = await response.json().catch(() => ({}));
+                return {
+                    answer: `📚 **${language === 'ta' ? 'அறிஞராக மாறிக் கொண்டிருக்கிறேன்...' : 'I am currently studying the books...'}**\n\n${initData.message || ''}\n\n--- \n**${language === 'ta' ? 'இப்போதைக்கு எனக்குத் தெரிந்த தகவல்:' : 'In the meantime, here is what I know:'}**\n${this.getSmartFallback(userQuestion, language)}`,
+                    engine: 'Studying...'
+                };
+            }
+
             if (!response.ok) {
                 const errorData = await response.json().catch(() => ({}));
                 console.warn('Backend server error:', errorData);
