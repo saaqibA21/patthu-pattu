@@ -103,30 +103,41 @@ class PathuPattuAI {
                 },
                 body: JSON.stringify({
                     message: userQuestion,
-                    context: PATHU_PATTU_CONTEXT,
                     language: language
                 })
             });
 
             if (!response.ok) {
-                // If backend is down or errors, use smart fallback
-                console.warn('Backend server error, using fallback.');
-                return this.getSmartFallback(userQuestion, language);
+                const errorData = await response.json().catch(() => ({}));
+                console.warn('Backend server error:', errorData);
+                return {
+                    answer: this.getSmartFallback(userQuestion, language),
+                    engine: 'Local Fallback'
+                };
             }
 
             const data = await response.json();
 
             if (data.answer) {
                 this.logInteraction(userQuestion, data.answer, language);
-                return data.answer;
+                return {
+                    answer: data.answer,
+                    pages: data.pages,
+                    engine: data.engine
+                };
             } else {
-                console.warn('Backend returned no answer, falling back.');
-                return this.getSmartFallback(userQuestion, language);
+                return {
+                    answer: this.getSmartFallback(userQuestion, language),
+                    engine: 'Local Fallback'
+                };
             }
 
         } catch (error) {
-            console.warn('Could not connect to backend server, using fallback.');
-            return this.getSmartFallback(userQuestion, language);
+            console.warn('Could not connect to backend server:', error);
+            return {
+                answer: "My advanced knowledge base is currently initializing. Please try again in 30 seconds. In the meantime, here is what I know: " + this.getSmartFallback(userQuestion, language),
+                engine: 'Offline Mode'
+            };
         }
     }
 
@@ -298,14 +309,26 @@ async function sendMessageAI() {
     showTypingIndicator();
 
     try {
-        // Get AI response
-        const response = await pathuPattuAI.ask(message, currentLang);
+        // Get AI response (now an object with answer, engine, pages)
+        const result = await pathuPattuAI.ask(message, currentLang);
 
         // Hide typing indicator
         hideTypingIndicator();
 
+        // Build a rich response with scholarly metadata
+        let enrichedAnswer = result.answer;
+
+        if (result.pages && result.pages.length > 0) {
+            const pagesTitle = currentLang === 'ta' ? 'ஆதாரம் (பக்கங்கள்)' : 'Source Pages';
+            enrichedAnswer += `\n\n--- \n**${pagesTitle}:** ${result.pages.join(', ')}`;
+        }
+
+        if (result.engine) {
+            enrichedAnswer += `\n\n<small style="opacity: 0.6; font-style: italic;">Engine: ${result.engine}</small>`;
+        }
+
         // Display AI response
-        displayMessage(response, 'bot');
+        displayMessage(enrichedAnswer, 'bot');
 
         // Show feedback buttons
         showFeedbackButtons(pathuPattuAI.conversationHistory.length - 1);

@@ -4,3 +4,20 @@ node_modules/
 .vscode/
 .DS_Store
 package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+
+# Local Model Data
+pathu_pattu_model_data/
+knowledge_base.json
+knowledge_base_ocr.json
+
+# Test files
+test_*.txt
+retrieval_test.txt
+error_log.txt
+*.mp4
+*.mkv
+*.webm
