@@ -1,8 +1,5 @@
 {
     "version": 2,
     "cleanUrls": true,
-    "framework": null,
-    "public": true,
-    "installCommand": "npm install --omit=dev",
-    "buildCommand": "echo 'Skipping heavy build for Vercel static hosting'"
+    "outputDirectory": "."
 }
