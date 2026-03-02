@@ -169,7 +169,6 @@ HTML = """
   .header{padding:1rem 1.5rem;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1rem;flex-shrink:0}
   .title h1{font-size:1rem;font-weight:700;color:var(--accent)}
   .title p{font-size:.75rem;color:var(--muted)}
-  .engine-badge{margin-left:auto;padding:.3rem .9rem;border-radius:100px;font-size:.72rem;font-weight:600;background:rgba(47,129,247,0.1);color:var(--primary);border:1px solid var(--primary)}
   .main{display:flex;flex:1;overflow:hidden}
   .sidebar{width:260px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);padding:1.2rem;overflow-y:auto;display:flex;flex-direction:column;gap:.7rem}
   .sidebar h3{font-size:.68rem;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem}
@@ -195,10 +194,9 @@ HTML = """
 <div class="header">
   <div class="logo">🧬</div>
   <div class="title">
-    <h1>Pathu Pattu AI — OpenAI Enhanced</h1>
-    <p>Semantic Vector Retrieval + GPT-4o-mini Synthesis</p>
+    <h1>Pathu Pattu AI Scholar</h1>
+    <p>Semantic Vector Retrieval & Literary Synthesis</p>
   </div>
-  <div class="engine-badge" id="badge">Initializing...</div>
 </div>
 <div class="main">
   <div class="sidebar">
@@ -215,7 +213,7 @@ HTML = """
     <div class="msgs" id="msgs">
       <div class="welcome">
         <h2>📚 Master the 10 Sangam Classics</h2>
-        <p>Ask anything about Pathu Pattu. Your query will be matched against 814 pages of original scans and synthesized by GPT-4o-mini.</p>
+        <p>Ask anything about Pathu Pattu. Your query will be matched against 814 pages of original scans and synthesized by our expert AI Scholar.</p>
       </div>
     </div>
     <div class="input-bar">
@@ -229,7 +227,6 @@ let busy=false;
 let engineName = "Local Extractor";
 
 fetch('/info').then(r=>r.json()).then(d=>{
-  document.getElementById('badge').textContent = "Engine: " + d.engine;
   engineName = d.engine;
 });
 
@@ -254,7 +251,7 @@ async function send(){
     const r=await fetch('/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})});
     const res=await r.json();
     const pgTags=res.pages.map(p=>`<span class="page-tag">p.${p}</span>`).join(' ');
-    d.innerHTML=`<div class="bub">${esc(res.answer)}</div><div class="meta">📖 ${pgTags} | ✨ ${res.engine}</div>`;
+    d.innerHTML=`<div class="bub">${esc(res.answer)}</div><div class="meta">📖 ${pgTags}</div>`;
   }catch(e){d.innerHTML='<div class="bub">Error connecting to server.</div>';}
   busy=false;document.getElementById('msgs').scrollTop=document.getElementById('msgs').scrollHeight;
 }
@@ -269,7 +266,7 @@ def index(): return render_template_string(HTML)
 @app.route("/info")
 def info():
     e = "Local Extractor"
-    if OPENAI_KEY: e = "GPT-4o-mini"
+    if OPENAI_KEY: e = "AI Scholar Engine"
     elif GEMINI_KEY: e = "Gemini-Pro"
     return jsonify({"chunks": model.meta.get("total_chunks", 0), "pages": model.meta.get("total_pages", 0), "engine": e})
 
@@ -290,7 +287,7 @@ def ask():
     
     # Priority 1: OpenAI
     ans = try_openai(q, context)
-    engine = "GPT-4o-mini"
+    engine = "AI Scholar Engine"
     
     # Priority 2: Gemini
     if not ans and GEMINI_KEY:
