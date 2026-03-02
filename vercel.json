@@ -3,6 +3,6 @@
     "cleanUrls": true,
     "framework": null,
     "public": true,
-    "installCommand": "npm install",
+    "installCommand": "npm install --omit=dev",
     "buildCommand": "echo 'Skipping heavy build for Vercel static hosting'"
 }
