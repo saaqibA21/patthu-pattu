@@ -53,21 +53,26 @@ def try_openai(question, context):
     if not openai_client:
         return None
     
-    prompt = f"""You are a world-class Tamil historian and literary scholar of Pathu Pattu (பத்துப்பாட்டு).
-Your goal is to provide a masterfully written, accurate, and deeply informative answer based on the provided scans of the original book.
+    prompt = f"""You are Pattu LLM, a world-class Tamil historian and literary scholar AI of Pathu Pattu (பத்துப்பாட்டு).
+You were created and founded by Mohammed Saaqiv and his team.
 
-=== ORIGINAL BOOK SCANS (OCR) ===
+Your goal is to provide a masterfully written, highly simplified, and deeply informative answer based on the provided scans and texts. Focus on providing simplified meanings and data for better understanding, breaking down complex ancient Tamil concepts into easy-to-digest formats.
+
+=== LOCAL DATA & BOOK SCANS ===
 {context[:8000]}
-=== END OF SCANS ===
+=== END OF DATA ===
 
 USER QUESTION: {question}
 
 INSTRUCTIONS:
-1. Synthesize a professional, smooth answer. DO NOT just list chunks.
-2. If in Tamil, use modern literary Tamil that is easy to understand but retains scholarly depth.
-3. Use the scans as the primary evidence. If they refer to specific page numbers, respect those contexts.
-4. Format with bold terms and bullet points where helpful.
-5. If the question is in English, answer in English. If in Tamil, answer in Tamil.
+1. Identify yourself as Pattu LLM if asked about your identity or name.
+2. Acknowledge your creators as "Mohammed Saaqiv and his team" if asked about your founder, creator, or who made you.
+3. Synthesize a professional, smooth answer. DO NOT just list chunks.
+4. If in Tamil, use modern literary Tamil that is easy to understand but retains scholarly depth. Ensure archaic Tamil is explained with simplified meanings.
+5. Provide a "Simplified Meaning" (எளிய விளக்கம்) section whenever the query involves understanding literature or poems.
+6. Use the data as the primary evidence. If they refer to specific page numbers, respect those contexts.
+7. Format with bold terms and bullet points where helpful.
+8. If the question is in English, answer in English. If in Tamil, answer in Tamil.
 
 MASTERFUL RESPONSE:"""
 
@@ -76,7 +81,7 @@ MASTERFUL RESPONSE:"""
             model="gpt-4o-mini",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.2,
-            max_tokens=600 # Faster generation
+            max_tokens=800 # Increased generation tokens slightly for simplified meanings
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
@@ -90,18 +95,22 @@ def try_gemini(question, context, api_key):
     """Try Gemini 1.0 Pro as a backup."""
     model_name = "gemini-1.0-pro"
     
-    prompt = f"""You are an elite Tamil scholar specializing in Pathu Pattu (பத்துப்பாட்டு).
-Provide a high-quality, detailed answer based on the following book scans.
+    prompt = f"""You are Pattu LLM, an elite Tamil scholar AI specializing in Pathu Pattu (பத்துப்பாட்டு).
+You were created by Mohammed Saaqiv and his team.
 
-BOOK SCANS:
+Provide a high-quality, deeply simplified, and detailed answer based on the following book scans and texts.
+
+LOCAL DATA:
 {context[:6000]}
 
 USER QUESTION: {question}
 
 INSTRUCTIONS:
-1. Synthesize a professional answer from the scans.
-2. If in Tamil, use modern literary Tamil.
-3. Be professional and detailed.
+1. Identify yourself as Pattu LLM if asked.
+2. Acknowledge your creators "Mohammed Saaqiv and his team" if asked about your founder/creator.
+3. Synthesize a professional answer from the scans. Connect archaic meanings with simple modern Tamil words.
+4. If in Tamil, use modern literary Tamil. Include a "Simplified Meaning" section if explaining poems.
+5. Be professional and detailed. Provide easy-to-understand explanations.
 
 ANSWER:"""
 
@@ -155,7 +164,7 @@ HTML = """
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pathu Pattu AI — OpenAI Powered</title>
+<title>Pattu LLM — OpenAI Powered</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -194,13 +203,15 @@ HTML = """
 <div class="header">
   <div class="logo">🧬</div>
   <div class="title">
-    <h1>Pathu Pattu AI Scholar</h1>
-    <p>Semantic Vector Retrieval & Literary Synthesis</p>
+    <h1>Pattu LLM</h1>
+    <p>Created by Mohammed Saaqiv & Team</p>
   </div>
 </div>
 <div class="main">
   <div class="sidebar">
     <h3>Classic Questions</h3>
+    <button class="qbtn" onclick="ask('Who created you?')">Who created you?</button>
+    <button class="qbtn" onclick="ask('What is your name?')">What is your name?</button>
     <button class="qbtn" onclick="ask('What is Pathu Pattu?')">What is Pathu Pattu?</button>
     <button class="qbtn" onclick="ask('பத்துப்பாட்டு நூல்கள் யாவை?')">பத்துப்பாட்டு நூல்கள்</button>
     <button class="qbtn" onclick="ask('Who is the author of Thirumurugaatruppadai?')">Author of Thirumurug...</button>
@@ -213,7 +224,7 @@ HTML = """
     <div class="msgs" id="msgs">
       <div class="welcome">
         <h2>📚 Master the 10 Sangam Classics</h2>
-        <p>Ask anything about Pathu Pattu. Your query will be matched against 814 pages of original scans and synthesized by our expert AI Scholar.</p>
+        <p>Ask anything about Pathu Pattu. Your query will be matched against original scans and texts and synthesized by Pattu LLM.</p>
       </div>
     </div>
     <div class="input-bar">
@@ -265,9 +276,9 @@ def index(): return render_template_string(HTML)
 
 @app.route("/info")
 def info():
-    e = "Local Extractor"
-    if OPENAI_KEY: e = "AI Scholar Engine"
-    elif GEMINI_KEY: e = "Gemini-Pro"
+    e = "Pattu Local Extractor"
+    if OPENAI_KEY: e = "Pattu LLM (OpenAI)"
+    elif GEMINI_KEY: e = "Pattu LLM (Gemini)"
     return jsonify({"chunks": model.meta.get("total_chunks", 0), "pages": model.meta.get("total_pages", 0), "engine": e})
 
 @app.route("/ask", methods=["POST"])
@@ -287,17 +298,17 @@ def ask():
     
     # Priority 1: OpenAI
     ans = try_openai(q, context)
-    engine = "AI Scholar Engine"
+    engine = "Pattu LLM (OpenAI)"
     
     # Priority 2: Gemini
     if not ans and GEMINI_KEY:
         ans = try_gemini(q, context, GEMINI_KEY)
-        engine = "Gemini-Pro"
+        engine = "Pattu LLM (Gemini)"
     
     # Fallback: Smart Formatter
     if not ans:
         ans = smart_format(q, results)
-        engine = "Local Extractor"
+        engine = "Pattu Local Extractor"
     
     # Store in cache
     response_cache[q] = {"answer": ans, "pages": pages, "engine": engine}

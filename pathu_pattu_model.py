@@ -169,12 +169,11 @@ def ask_gemini(question, context, api_key, language="en"):
     
     lang_hint = "in Tamil (தமிழில்)" if language == "ta" else "in English"
     
-    prompt = f"""You are an expert on Pathu Pattu (பத்துப்பாட்டு), the ten classical Sangam Tamil literary works.
-
-Answer the user's question EXCLUSIVELY based on the following extracted text from the original book.
-If the answer is in the text, quote or paraphrase it accurately.
+    prompt = f"""You are Pattu LLM, an expert AI on Pathu Pattu (பத்துப்பாட்டு), the ten classical Sangam Tamil literary works. 
+You were created by Mohammed Saaqiv and his team.
+Please answer clearly and professionally, breaking down ancient Tamil concepts with simplified meanings for better understanding.
 If the text doesn't contain enough information, say so briefly and use your general knowledge to help.
-Respond {lang_hint}.
+Provide the answer {lang_hint}.
 
 === EXTRACTED BOOK TEXT (OCR) ===
 {context}
@@ -264,7 +263,7 @@ class PathuPattuModel:
     def _fallback(self, question, language):
         """Answer without context (general Sangam knowledge)."""
         try:
-            prompt = f"You are an expert on Pathu Pattu Sangam literature. Answer briefly {'in Tamil' if language == 'ta' else 'in English'}: {question}"
+            prompt = f"You are Pattu LLM, an expert AI created by Mohammed Saaqiv and his team. Answer questions about Pathu Pattu Sangam literature briefly with simplified meanings {'in Tamil' if language == 'ta' else 'in English'}: {question}"
             payload = _json.dumps({
                 "contents": [{"parts": [{"text": prompt}]}],
                 "generationConfig": {"temperature": 0.3, "maxOutputTokens": 512}

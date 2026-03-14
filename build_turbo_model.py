@@ -28,7 +28,24 @@ client = OpenAI(api_key=OPENAI_KEY)
 def load_data():
     with open(KB_PATH, encoding="utf-8") as f:
         data = json.load(f)
-    return [p for p in data["pages"] if p.get("char_count", 0) > 80]
+    pages = [p for p in data["pages"] if p.get("char_count", 0) > 80]
+    
+    # Add files from TEXT_DATA
+    text_data_dir = "TEXT_DATA"
+    if os.path.exists(text_data_dir):
+        for filename in os.listdir(text_data_dir):
+            if filename.endswith(".txt"):
+                filepath = os.path.join(text_data_dir, filename)
+                with open(filepath, "r", encoding="utf-8") as f:
+                    content = f.read()
+                # Create a pseudo-page from this text data
+                # Identify it via a string page "TextData_filename"
+                pages.append({
+                    "page": f"TEXT_DATA/{filename}",
+                    "content": content,
+                    "char_count": len(content)
+                })
+    return pages
 
 def build_turbo():
     print("🚀 Starting TURBO Model Build (OpenAI Embeddings)...")

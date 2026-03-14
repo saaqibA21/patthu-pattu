@@ -59,7 +59,7 @@ app.post('/api/chat', async (req, res) => {
             // If it's a connection error or timeout, return "Initializing" status
             res.status(503).json({
                 error: 'AI_INITIALIZING',
-                message: 'The AI Scholar is currently loading its massive library. This happens once after a period of inactivity. Please try again in 15 seconds.',
+                message: 'Pattu LLM is currently loading its massive library. This happens once after a period of inactivity. Please try again in 15 seconds.',
                 engine: 'Loading...'
             });
         }

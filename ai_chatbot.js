@@ -11,6 +11,10 @@ const CHAT_CONFIG = {
 };
 
 
+//    console.log(`
+//    ================================
+//    🤖 PATTU LLM READY!
+//    ==============================================
 // ==============================================
 // PATHU PATTU KNOWLEDGE BASE
 // ==============================================
@@ -142,7 +146,7 @@ class PathuPattuAI {
             console.warn('Could not connect to backend server:', error);
             const slowMessage = language === 'ta'
                 ? "மன்னிக்கவும், எனது அறிவுத் தளம் தற்போது விழித்துக் கொள்கிறது (Render Free Tier). தயவுசெய்து 60 வினாடிகள் கழித்து மீண்டும் முயற்சிக்கவும்..."
-                : "The AI Scholar is currently waking up from its library (Render Free Tier). Please wait about 60 seconds for the initial load and try again...";
+                : "Pattu LLM is currently waking up from its library (Render Free Tier). Please wait about 60 seconds for the initial load and try again...";
 
             return {
                 answer: slowMessage + "\n\n**இப்போதைக்கு எனக்கு தெரிந்தவை / For now, I know:**\n" + this.getSmartFallback(userQuestion, language),
@@ -438,7 +442,7 @@ function clearAllData() {
 // ==============================================
 
 console.log(`
-🤖 PATHU PATTU AI SCHOLAR READY!
+🤖 PATTU LLM READY!
 
 ARCHITECTURE:
 ✅ Advanced RAG (Retrieval-Augmented Generation)
@@ -451,6 +455,6 @@ ADMIN COMMANDS (in browser console):
 - exportData()        - Download interaction data
 - clearAllData()      - Clear local session data
 
-The AI Scholar is now securely connected to the production backend.
+Pattu LLM is now securely connected to the production backend.
 API keys are managed safely in the cloud (no longer exposed in browser).
 `);
