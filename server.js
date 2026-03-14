@@ -73,7 +73,24 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
+// ---- Keep-Alive Logic for Render Free Tier ----
+const WAKE_UP_URL = process.env.WAKE_UP_URL || 'https://patthu-pattu.onrender.com/';
+
+function keepAlive() {
+    console.log('⏰ Keep-Alive: Pinging server to prevent sleep...');
+    try {
+        fetch(WAKE_UP_URL)
+            .then(res => console.log(`⏰ Keep-Alive: Ping successful (${res.status})`))
+            .catch(err => console.error('⏰ Keep-Alive: Ping failed', err.message));
+    } catch (e) {
+        console.error('⏰ Keep-Alive Error:', e.message);
+    }
+}
+
 app.listen(PORT, () => {
     console.log(`🚀 Pathu Pattu AI Server running at http://localhost:${PORT}`);
     console.log(`🔒 API Key secured in backend`);
+
+    // Ping ourselves every 10 minutes (600,000 milliseconds)
+    setInterval(keepAlive, 10 * 60 * 1000);
 });
