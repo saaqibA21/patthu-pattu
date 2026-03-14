@@ -97,6 +97,11 @@ class PathuPattuAI {
 
     async ask(userQuestion, language = 'ta') {
         try {
+            // Get the last 2 interactions for conversational memory
+            const recentHistory = this.conversationHistory
+                .slice(-2)
+                .map(i => ({ question: i.question, answer: i.answer.substring(0, 300) + '...' }));
+
             // Call our local backend instead of Google directly
             const response = await fetch(CHAT_CONFIG.serverUrl, {
                 method: 'POST',
@@ -105,7 +110,8 @@ class PathuPattuAI {
                 },
                 body: JSON.stringify({
                     message: userQuestion,
-                    language: language
+                    language: language,
+                    history: recentHistory
                 })
             });
 

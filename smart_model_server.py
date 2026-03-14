@@ -48,10 +48,17 @@ if OPENAI_KEY:
     openai_client = OpenAI(api_key=OPENAI_KEY)
     print("✅ OpenAI client initialized!")
 
-def try_openai(question, context):
+def try_openai(question, context, history=None):
     """Use OpenAI GPT-4o-mini for very high quality synthesis."""
     if not openai_client:
         return None
+        
+    history_str = ""
+    if history:
+        history_str = "\n=== RECENT CONVERSATION HISTORY (MEMORY) ===\n"
+        for item in history:
+            history_str += f"User: {item.get('question', '')}\nPattu LLM: {item.get('answer', '')}\n\n"
+        history_str += "=== END OF MEMORY ===\n"
     
     prompt = f"""You are Pattu LLM, a world-class Tamil historian and literary scholar AI of Pathu Pattu (பத்துப்பாட்டு).
 You were created and founded by Mohammed Saaqiv and his team.
@@ -61,7 +68,7 @@ Your goal is to provide a masterfully written, highly simplified, and deeply inf
 === LOCAL DATA & BOOK SCANS ===
 {context[:8000]}
 === END OF DATA ===
-
+{history_str}
 USER QUESTION: {question}
 
 INSTRUCTIONS:
@@ -91,9 +98,15 @@ MASTERFUL RESPONSE:"""
             f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} - {error_msg}\n")
         return None
 
-def try_gemini(question, context, api_key):
+def try_gemini(question, context, api_key, history=None):
     """Try Gemini 1.0 Pro as a backup."""
     model_name = "gemini-1.0-pro"
+    
+    history_str = ""
+    if history:
+        history_str = "\nRECENT CONVERSATION HISTORY:\n"
+        for item in history:
+            history_str += f"User: {item.get('question', '')}\nPattu LLM: {item.get('answer', '')}\n\n"
     
     prompt = f"""You are Pattu LLM, an elite Tamil scholar AI specializing in Pathu Pattu (பத்துப்பாட்டு).
 You were created by Mohammed Saaqiv and his team.
@@ -102,7 +115,7 @@ Provide a high-quality, deeply simplified, and detailed answer based on the foll
 
 LOCAL DATA:
 {context[:6000]}
-
+{history_str}
 USER QUESTION: {question}
 
 INSTRUCTIONS:
@@ -285,24 +298,30 @@ def info():
 def ask():
     data = request.json
     q = data.get("question", "").strip()
+    history = data.get("history", [])
     
     # Check cache first (for exact matches)
     if q in response_cache:
         print(f"⚡ Cache Hit for: {q[:30]}...")
         return jsonify(response_cache[q])
 
-    results = model.search(q, top_k=5) # Reduced from 8 for speed
+    # If conversational follow up, merge last question with this for retrieval
+    search_q = q
+    if history and len(q.split()) < 4:
+        search_q = f"{history[-1].get('question', '')} {q}"
+        
+    results = model.search(search_q, top_k=5) # Reduced from 8 for speed
     pages = sorted(set(r["page"] for r in results))
     context = "\n".join([f"[Page {r['page']}] {r['text']}" for r in results])
     context = context[:4000] # Cap context for faster processing
     
     # Priority 1: OpenAI
-    ans = try_openai(q, context)
+    ans = try_openai(q, context, history)
     engine = "Pattu LLM (OpenAI)"
     
     # Priority 2: Gemini
     if not ans and GEMINI_KEY:
-        ans = try_gemini(q, context, GEMINI_KEY)
+        ans = try_gemini(q, context, GEMINI_KEY, history)
         engine = "Pattu LLM (Gemini)"
     
     # Fallback: Smart Formatter

@@ -19,7 +19,7 @@ app.use(express.static('./')); // Serve the website files
 // Chat Endpoint (Connected to Python RAG Model)
 app.post('/api/chat', async (req, res) => {
     try {
-        const { message, language } = req.body;
+        const { message, language, history } = req.body;
 
         if (!message) {
             return res.status(400).json({ error: 'Message is required' });
@@ -37,7 +37,8 @@ app.post('/api/chat', async (req, res) => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     question: message,
-                    language: language || 'en'
+                    language: language || 'en',
+                    history: history || []
                 }),
                 signal: controller.signal
             });
