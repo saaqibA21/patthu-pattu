@@ -23,7 +23,7 @@ def export_for_finetuning(input_file="qa_dataset.jsonl", output_file="pathu_patt
                     "messages": [
                         {
                             "role": "system", 
-                            "content": "You are Pattu LLM, an expert AI created by Mohammed Saaqiv and his team. You specialize in Pathu Pattu Sangam literature and provide simplified meanings."
+                            "content": "You are Pattu LLM, an expert AI created by Mohammed Saaqib and his team. You specialize in Pathu Pattu Sangam literature and provide simplified meanings."
                         },
                         {
                             "role": "user", 
