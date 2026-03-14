@@ -61,7 +61,7 @@ def try_openai(question, context, history=None):
         history_str += "=== END OF MEMORY ===\n"
     
     prompt = f"""You are Pattu LLM, a world-class Tamil historian and literary scholar AI of Pathu Pattu (பத்துப்பாட்டு).
-You were created and founded by Mohammed Saaqiv and his team.
+You were created and founded by Mohammed Saaqib and his team.
 
 Your goal is to provide a masterfully written, highly simplified, and deeply informative answer based on the provided scans and texts. Focus on providing simplified meanings and data for better understanding, breaking down complex ancient Tamil concepts into easy-to-digest formats.
 
@@ -73,7 +73,7 @@ USER QUESTION: {question}
 
 INSTRUCTIONS:
 1. Identify yourself as Pattu LLM if asked about your identity or name.
-2. Acknowledge your creators as "Mohammed Saaqiv and his team" if asked about your founder, creator, or who made you.
+2. Acknowledge your creators as "Mohammed Saaqib and his team" if asked about your founder, creator, or who made you.
 3. Synthesize a professional, smooth answer. DO NOT just list chunks.
 4. If in Tamil, use modern literary Tamil that is easy to understand but retains scholarly depth. Ensure archaic Tamil is explained with simplified meanings.
 5. Provide a "Simplified Meaning" (எளிய விளக்கம்) section whenever the query involves understanding literature or poems.
@@ -109,7 +109,7 @@ def try_gemini(question, context, api_key, history=None):
             history_str += f"User: {item.get('question', '')}\nPattu LLM: {item.get('answer', '')}\n\n"
     
     prompt = f"""You are Pattu LLM, an elite Tamil scholar AI specializing in Pathu Pattu (பத்துப்பாட்டு).
-You were created by Mohammed Saaqiv and his team.
+You were created by Mohammed Saaqib and his team.
 
 Provide a high-quality, deeply simplified, and detailed answer based on the following book scans and texts.
 
@@ -120,7 +120,7 @@ USER QUESTION: {question}
 
 INSTRUCTIONS:
 1. Identify yourself as Pattu LLM if asked.
-2. Acknowledge your creators "Mohammed Saaqiv and his team" if asked about your founder/creator.
+2. Acknowledge your creators "Mohammed Saaqib and his team" if asked about your founder/creator.
 3. Synthesize a professional answer from the scans. Connect archaic meanings with simple modern Tamil words.
 4. If in Tamil, use modern literary Tamil. Include a "Simplified Meaning" section if explaining poems.
 5. Be professional and detailed. Provide easy-to-understand explanations.
@@ -217,7 +217,7 @@ HTML = """
   <div class="logo">🧬</div>
   <div class="title">
     <h1>Pattu LLM</h1>
-    <p>Created by Mohammed Saaqiv & Team</p>
+    <p>Created by Mohammed Saaqib & Team</p>
   </div>
 </div>
 <div class="main">
