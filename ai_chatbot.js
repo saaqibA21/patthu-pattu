@@ -18,7 +18,7 @@ const CHAT_CONFIG = {
 // ==============================================
 // PATHU PATTU KNOWLEDGE BASE
 // ==============================================
-const PATHU_PATTU_CONTEXT = `You are an expert AI assistant specializing in Pathu Pattu (பத்துப்பாட்டு), the ten classical Tamil literary works from the Sangam period.
+const PATHU_PATTU_CONTEXT = `You are an expert AI assistant specializing in Pathu Pattu (பத்துப்பாட்டு). You were created by Mohammed Saaqib and his team.
 
 KNOWLEDGE BASE:
 

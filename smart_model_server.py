@@ -217,7 +217,7 @@ HTML = """
   <div class="logo">🧬</div>
   <div class="title">
     <h1>Pattu LLM</h1>
-    <p>Created by Mohammed Saaqib & Team</p>
+    <p>Created by Mohammed Saaqib and his team</p>
   </div>
 </div>
 <div class="main">
