@@ -975,6 +975,15 @@ function displayMessage(text, side) {
     messageText.className = 'message-text';
     messageText.innerHTML = formatMessageText(text);
 
+    if (side === 'bot') {
+        const speakBtn = document.createElement('button');
+        speakBtn.className = 'speaker-btn';
+        speakBtn.textContent = '🔊';
+        speakBtn.title = currentLang === 'ta' ? 'குரலில் கேட்க' : 'Speak Answer';
+        speakBtn.onclick = () => window.toggleSpeak(speakBtn, text);
+        messageText.appendChild(speakBtn);
+    }
+
     messageDiv.appendChild(messageText);
     messagesContainer.appendChild(messageDiv);
 
@@ -1024,3 +1033,95 @@ function handleKeyPress(event) {
         sendMessage();
     }
 }
+
+// ==========================================
+// VOICE AI (SPEECH-TO-TEXT & TEXT-TO-SPEECH)
+// ==========================================
+
+let speechRecognition = null;
+let isVoiceRecording = false;
+
+// Initialize Speech-To-Text
+if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+    const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+    speechRecognition = new SpeechRec();
+    speechRecognition.continuous = false;
+    speechRecognition.interimResults = false;
+
+    speechRecognition.onresult = function (event) {
+        const text = event.results[0][0].transcript;
+        const input = document.getElementById('chatInput');
+        if (input) {
+            input.value = text;
+            sendMessage();
+        }
+        window.toggleSpeechRecognition();
+    };
+
+    speechRecognition.onerror = function (event) {
+        console.warn("Speech recognition error: ", event.error);
+        window.toggleSpeechRecognition();
+    };
+
+    speechRecognition.onend = function () {
+        if (isVoiceRecording) window.toggleSpeechRecognition();
+    };
+}
+
+window.toggleSpeechRecognition = function () {
+    if (!speechRecognition) {
+        alert(currentLang === 'ta' ? "உங்கள் விசைப்பலகை/உலாவி குரல் அம்சத்தை ஆதரிக்கவில்லை." : "Your browser does not support Voice AI.");
+        return;
+    }
+    const micBtn = document.getElementById('micBtn');
+    if (isVoiceRecording) {
+        speechRecognition.stop();
+        isVoiceRecording = false;
+        if (micBtn) micBtn.classList.remove('recording');
+    } else {
+        speechRecognition.lang = currentLang === 'ta' ? 'ta-IN' : 'en-US';
+        speechRecognition.start();
+        isVoiceRecording = true;
+        if (micBtn) micBtn.classList.add('recording');
+    }
+};
+
+window.toggleSpeak = function (btn, text) {
+    if (!('speechSynthesis' in window)) return;
+
+    if (btn.classList.contains('speaking')) {
+        window.speechSynthesis.cancel();
+        btn.classList.remove('speaking');
+        btn.textContent = '🔊';
+        return;
+    }
+
+    window.speechSynthesis.cancel(); // Stop any other speech
+
+    // reset all other speaker buttons
+    document.querySelectorAll('.speaker-btn').forEach(b => {
+        b.classList.remove('speaking');
+        b.textContent = '🔊';
+    });
+
+    // Clean markdown before speaking
+    const cleanText = text.replace(/[*#>`_-]/g, '').replace(/---/g, '');
+    const utter = new SpeechSynthesisUtterance(cleanText);
+    utter.lang = currentLang === 'ta' ? 'ta-IN' : 'en-US';
+    utter.rate = 0.95; // slightly slower for better Tamil pronunciation
+
+    btn.classList.add('speaking');
+    btn.textContent = '⏹️';
+
+    utter.onend = function () {
+        btn.classList.remove('speaking');
+        btn.textContent = '🔊';
+    };
+
+    utter.onerror = function () {
+        btn.classList.remove('speaking');
+        btn.textContent = '🔊';
+    };
+
+    window.speechSynthesis.speak(utter);
+};
