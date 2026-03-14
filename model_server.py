@@ -523,6 +523,24 @@ def ask():
     for attempt in range(3):
         try:
             answer = model.answer(question, language=language, top_k=5)
+            
+            # --- SAVE INTERACTION FOR FINE-TUNING ---
+            try:
+                dataset_entry = {
+                    "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+                    "question": question,
+                    "pages_retrieved": pages_found,
+                    "answer": answer,
+                    "engine": "Pattu LLM Main Server"
+                }
+                with open("qa_dataset.jsonl", "a", encoding="utf-8") as f:
+                    # Note: we use json module which is imported as _json in pathu_pattu_model but we can just import json at top of file
+                    import json
+                    f.write(json.dumps(dataset_entry, ensure_ascii=False) + "\n")
+                print(f"💾 Saved Q&A to qa_dataset.jsonl for future fine-tuning!")
+            except Exception as e:
+                print(f"Error saving dataset: {e}")
+                
             return jsonify({"answer": answer, "pages_found": pages_found})
         except Exception as e:
             err = str(e)

@@ -313,6 +313,22 @@ def ask():
     # Store in cache
     response_cache[q] = {"answer": ans, "pages": pages, "engine": engine}
     
+    # --- SAVE INTERACTION FOR FINE-TUNING ---
+    try:
+        dataset_entry = {
+            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "question": q,
+            "pages_retrieved": pages,
+            "context_used": context,
+            "answer": ans,
+            "engine": engine
+        }
+        with open("qa_dataset.jsonl", "a", encoding="utf-8") as f:
+            f.write(json.dumps(dataset_entry, ensure_ascii=False) + "\n")
+        print(f"💾 Saved Q&A to qa_dataset.jsonl for future fine-tuning!")
+    except Exception as e:
+        print(f"Error saving dataset: {e}")
+        
     return jsonify(response_cache[q])
 
 if __name__ == "__main__":
