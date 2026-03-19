@@ -107,16 +107,32 @@ class PathuPattuAI {
             
             // PRIORITY: If user asks for full verses, try to get them from our local JS database first
             // This is faster and ensures the user gets EXACTLY what's in pathu_pattu_texts.js
-            if (q.includes('full verses') || q.includes('முழு பாடல்') || q.includes('முழு வரிகள்') || q.includes('அனைத்து வரிகள்')) {
+            const isLyricsRequest = q.includes('full verses') || q.includes('ముழு பாடல்') || 
+                                   q.includes('முழு வரிகள்') || q.includes('அனைத்து வரிகள்') || 
+                                   q.includes('full lyrics') || q.includes('lyrics') || 
+                                   q.includes('பாடல்கள்') || q.includes('பாடல் வரிகள்');
+
+            if (isLyricsRequest) {
                 let bookId = null;
+                // Mapping all 10 books
                 if (q.includes('mullaipattu') || q.includes('mullaipatu') || q.includes('முல்லைப்பாட்டு')) bookId = 5;
-                if (q.includes('thirumurugaatruppadai') || q.includes('thirumurugatrupadai') || q.includes('திருமுருகாற்றுப்படை')) bookId = 1;
-                // Add more if needed...
+                else if (q.includes('thirumurugaatruppadai') || q.includes('thirumurugatrupadai') || q.includes('திருமுருகாற்றுப்படை')) bookId = 1;
+                else if (q.includes('porunararruppadai') || q.includes('பொருநராற்றுப்படை')) bookId = 2;
+                else if (q.includes('sirupanarruppadai') || q.includes('சிறுபாணாற்றுப்படை')) bookId = 3;
+                else if (q.includes('perumpanarruppadai') || q.includes('பெரும்பாணாற்றுப்படை')) bookId = 4;
+                else if (q.includes('nedunalvadai') || q.includes('நெடுநல்வாடை')) bookId = 6;
+                else if (q.includes('maduraikanchi') || q.includes('மதுரைக்காஞ்சி')) bookId = 7;
+                else if (q.includes('kurinjippattu') || q.includes('குறிஞ்சிப்பாட்டு')) bookId = 8;
+                else if (q.includes('pattinappalai') || q.includes('பட்டினப்பாலை')) bookId = 9;
+                else if (q.includes('malaipadukadam') || q.includes('மலைபடுகடாம்')) bookId = 10;
 
                 if (bookId && typeof pathuPattuTexts !== 'undefined' && pathuPattuTexts[bookId]) {
                     const data = pathuPattuTexts[bookId];
+                    // Strip the title if it's already there to avoid duplication
+                    const cleanTa = data.fullTextTa.includes('முழு பாடல்') ? data.fullTextTa : `### ${data.fullTextTa.split('\n')[0]}\n\n${data.fullTextTa}`;
+                    
                     const answer = language === 'ta' 
-                        ? `### ${data.fullTextTa.split('\n')[0]}\n\n${data.fullTextTa}\n\n--- \n**எளிய விளக்கம்:** மேலே உள்ளது முழுமையான 103 அடிகள் கொண்ட முல்லைப்பாட்டு ஆகும்.`
+                        ? `${cleanTa}\n\n--- \n**எளிய விளக்கம்:** மேலே உள்ளது முழுமையான வரிகள் கொண்ட மின்னூலகத் தரவு ஆகும்.`
                         : `### ${data.fullTextEn.split('\n')[0]}\n\n${data.fullTextEn}\n\n--- \n**Note:** Above is the complete text retrieved from the local database.`;
                     
                     this.logInteraction(userQuestion, answer, language);

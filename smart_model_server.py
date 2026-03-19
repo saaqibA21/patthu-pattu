@@ -343,7 +343,8 @@ def ask():
                         priority_context += f"\n=== FULL TEXT OF {kw.upper()} ===\n" + f.read() + "\n"
                         print(f"🌟 Priority Context Injected: {path}")
 
-        pages = sorted(list(set(r["page"] for r in results)))
+        # Convert all pages to strings before sorting to avoid TypeError (mixing int and str)
+        pages = sorted(list(set(str(r["page"]) for r in results)))
         
         context_parts = []
         for r in results:

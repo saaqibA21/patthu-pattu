@@ -537,352 +537,222 @@ leaving behind the valli vine forest. The End.`,
     },
 
     6: {
-        // நெடுனளவாடை
-        fullTextTa: `நெடுனளவாடை - முழு பாடல்
-
-தொடக்கம்:
-பாண்டிய மன்னன் நெடுஞ்செழியன்
-வீரம் மிக்க அரசன்
-போரில் வெற்றி பெற்றவன்
-நாட்டை நன்கு ஆண்டவன்
-
-போர் வெற்றிகள்:
-பகைவர்களை வென்றான்
-நாட்டை விரிவாக்கினான்
-செல்வம் சேர்த்தான்
-புகழ் பெற்றான்
-
-காதல் கதை:
-அரசன் காதல் கொண்டான்
-அரசி அழகு மிக்கவள்
-இருவரும் இணைந்தனர்
-இன்பமாக வாழ்ந்தனர்
-
-இறுதி:
-வீரமும் காதலும் கொண்ட
-அரசன் வாழ்க்கை சிறப்பாக
-நாடு செழிப்புடன் விளங்கியது
-மக்கள் மகிழ்ச்சியுடன் வாழ்ந்தனர்`,
-
-        fullTextEn: `Nedunalvadai - Full Text
-
-Beginning:
-Pandya king Nedunchezhiyan
-Valorous king
-One who won in war
-One who ruled the country well
-
-War Victories:
-He defeated enemies
-He expanded the country
-He accumulated wealth
-He gained fame
-
-Love Story:
-The king fell in love
-The queen was beautiful
-Both united
-They lived happily
-
-Conclusion:
-Having valor and love
-The king's life was excellent
-The country flourished with prosperity
-People lived with joy`,
-
-        sampleVersesTa: [
-            "பாண்டிய மன்னன் நெடுஞ்செழியன் வீரம் மிக்க அரசன்",
-            "அரசன் காதல் கொண்டான் அரசி அழகு மிக்கவள்",
-            "நாடு செழிப்புடன் விளங்கியது மக்கள் மகிழ்ச்சியுடன் வாழ்ந்தனர்"
-        ],
-
-        sampleVersesEn: [
-            "Pandya king Nedunchezhiyan, valorous king",
-            "The king fell in love, the queen was beautiful",
-            "The country flourished with prosperity, people lived with joy"
-        ],
-
-        audioUrl: "https://archive.org/download/tamil-classical-music/nedunalvadai.mp3",
-        audioNote: "Traditional recitation"
-    },
-
-    7: {
         // மதுரைக்காஞ்சி
-        fullTextTa: `மதுரைக்காஞ்சி - முழு பாடல்
+        fullTextTa: `மதுரைக்காஞ்சி - முழு பாடல் வரிகள் (சுருக்கம்)
 
-தொடக்கம்:
-மதுரை நகரம் - பாண்டிய தலைநகர்
-செழிப்பு மிக்க நகரம்
-வணிகம் நடைபெறும் இடம்
-கலை இலக்கியம் வளரும் மையம்
+மதுரை மாநகரின் சிறப்புகளைப் பாடும் 782 வரிகள் கொண்ட மிக நீண்ட சங்க கால நூல்.
 
-நகர வாழ்க்கை:
-சந்தைகள் நிறைந்த நகரம்
-மக்கள் கூட்டம் அலைமோதும்
-செல்வம் குவியும் இடம்
-இன்பம் நிறைந்த வாழ்க்கை
+முக்கிய பகுதிகள்:
+1. பாண்டியன் நெடுஞ்செழியனின் புகழ்
+2. மதுரை மாநகரின் இரவு மற்றும் பகல் காட்சிகள்
+3. அந்தணர்கள், வணிகர்கள் மற்றும் கைவினைஞர்களின் வாழ்க்கை
+4. மதுரைக் கூடல் திருவிழாக்கள்
+5. நிலையாமை - செல்வம் மற்றும் அதிகாரம் நிலையற்றவை என்ற அறிவுரை
 
-தர்ம உபதேசம்:
-இன்பங்கள் நிலையற்றவை
-செல்வம் நிரந்தரமல்ல
-உண்மையான மகிழ்ச்சி உள்ளத்தில்
-தர்மம் செய்வதே சிறந்தது
+[முழு வரிகள் விரைவில் சேர்க்கப்படும்...]`,
 
-இறுதி:
-நகர வாழ்க்கையின் மாயையை உணர்ந்து
-தர்ம நெறியில் வாழ வேண்டும்
-அதுவே உண்மையான வாழ்க்கை
-அதுவே நிலையான இன்பம்`,
+        fullTextEn: `Maduraikanchi - Full Text (Summary)
 
-        fullTextEn: `Maduraikanchi - Full Text
+The longest poem in Pathu Pattu (782 lines), celebrating the city of Madurai and the Pandya king Nedunchezhiyan.
 
-Beginning:
-Madurai city - Pandya capital
-Prosperous city
-Place of commerce
-Center of art and literature
+Key Sections:
+1. Glory of King Nedunchezhiyan
+2. Day and Night markets of Madurai
+3. Lives of various citizens and merchants
+4. Religious festivals of Madurai
+5. Transience - Advice on the impermanence of worldly things.
 
-City Life:
-City full of markets
-Crowds of people surge
-Place where wealth accumulates
-Life full of pleasure
-
-Dharma Teaching:
-Pleasures are impermanent
-Wealth is not eternal
-True happiness is within
-Doing dharma is best
-
-Conclusion:
-Understanding the illusion of city life
-One should live in the path of dharma
-That is true life
-That is permanent happiness`,
+[Complete 782 lines will be added soon...]`,
 
         sampleVersesTa: [
-            "மதுரை நகரம் - பாண்டிய தலைநகர் செழிப்பு மிக்க நகரம்",
-            "இன்பங்கள் நிலையற்றவை செல்வம் நிரந்தரமல்ல",
-            "தர்ம நெறியில் வாழ வேண்டும் அதுவே உண்மையான வாழ்க்கை"
+            "மதுரை மூதூர் மாநகர் - செழிப்பு மிக்க வீதிகள்",
+            "நாளங்காடி மற்றும் அல்லங்காடி - வணிகம் செழிக்கும் இடம்",
+            "அரசன் நெடுஞ்செழியன் - போரில் சிறந்த பாண்டியன்"
         ],
 
         sampleVersesEn: [
-            "Madurai city - Pandya capital, prosperous city",
-            "Pleasures are impermanent, wealth is not eternal",
-            "One should live in the path of dharma, that is true life"
+            "Ancient city of Madurai - streets of prosperity",
+            "Day markets and night markets - where commerce flourishes",
+            "King Nedunchezhiyan - the great Pandya warrior"
         ],
 
         audioUrl: "https://archive.org/download/tamil-classical-music/maduraikanchi.mp3",
         audioNote: "Traditional recitation"
     },
 
-    8: {
+    7: {
         // நெடுநல்வாடை
-        fullTextTa: `நெடுநல்வாடை - முழு பாடல்
+        fullTextTa: `நெடுநல்வாடை - முழு பாடல் வரிகள் (சுருக்கம்)
 
-தொடக்கம்:
-குளிர்காலம் வந்தது
-வடக்கு காற்று வீசுகிறது
-இயற்கை மாறுகிறது
-உணர்வுகள் மாறுகின்றன
+பாண்டியன் நெடுஞ்செழியன் போர்க்களத்தில் இருக்க, அவனைப் பிரிந்த அரசியின் துயரத்தைப் பாடும் 188 வரிகள் கொண்ட நூல்.
 
-பிரிவின் வேதனை:
-தலைவன் பிரிந்து சென்றான்
-தலைவி தனியாக இருக்கிறாள்
-குளிர் காற்று வருத்துகிறது
-மனம் வேதனைப்படுகிறது
+முக்கிய பகுதிகள்:
+1. குளிர்காலத்தின் வருகை (வாடை)
+2. மக்களின் இயல்பு மற்றும் கால்நடைகளின் நிலை
+3. அரசியின் அந்தப்புரம் மற்றும் அவளது தனிமை
+4. அரசன் போர்க்களத்தில் காயமடைந்த வீரர்களைக் காணுதல்
+5. வீரமும் காதலும் கலந்த சங்க இலக்கியம்
 
-இயற்கை விவரணை:
-மரங்கள் இலை உதிர்கின்றன
-பூக்கள் வாடுகின்றன
-பறவைகள் சோகமாக கூவுகின்றன
-ஆறுகள் குளிர்ந்து ஓடுகின்றன
+[முழு வரிகள் விரைவில் சேர்க்கப்படும்...]`,
 
-இறுதி:
-பிரிவின் துன்பம் பெரிது
-காதல் வலிமை மிக்கது
-மீண்டும் சந்திப்போம்
-மகிழ்ச்சி திரும்பும்`,
+        fullTextEn: `Nedunalvadai - Full Text (Summary)
 
-        fullTextEn: `Nedunalvadai - Full Text
+A 188-line poem depicting the separation of the Queen from King Nedunchezhiyan during the cold winter season.
 
-Beginning:
-Winter has come
-North wind blows
-Nature changes
-Feelings change
+Key Sections:
+1. The arrival of the north wind (Vadai)
+2. Impact of winter on people and livestock
+3. The Queen's chamber and her loneliness
+4. The King inspecting wounded soldiers in the camp
+5. A blend of valor (Puram) and love (Akam).
 
-Pain of Separation:
-The hero departed
-The heroine is alone
-Cold wind troubles
-Heart grieves
-
-Nature Description:
-Trees shed leaves
-Flowers wither
-Birds call sadly
-Rivers flow cold
-
-Conclusion:
-Pain of separation is great
-Love is powerful
-We will meet again
-Joy will return`,
+[Complete 188 lines will be added soon...]`,
 
         sampleVersesTa: [
-            "குளிர்காலம் வந்தது வடக்கு காற்று வீசுகிறது",
-            "தலைவன் பிரிந்து சென்றான் தலைவி தனியாக இருக்கிறாள்",
-            "மீண்டும் சந்திப்போம் மகிழ்ச்சி திரும்பும்"
+            "நெடு நல் வாடை - நீண்ட குளிர் காற்று",
+            "அரசி பிரிவில் வாடுதல் - அந்தப்புரத் தனிமை",
+            "அரசன் போர்க்களத்தில் - வீரர்களைத் தேற்றுதல்"
         ],
 
         sampleVersesEn: [
-            "Winter has come, north wind blows",
-            "The hero departed, the heroine is alone",
-            "We will meet again, joy will return"
+            "Long cold north wind - chilling the soul",
+            "Queen suffering in separation - palace loneliness",
+            "King in the battlefield - comforting the soldiers"
         ],
 
-        audioUrl: "https://archive.org/download/tamil-classical-music/nedunalvadai2.mp3",
+        audioUrl: "https://archive.org/download/tamil-classical-music/nedunalvadai.mp3",
         audioNote: "Traditional recitation"
     },
 
-    9: {
+    8: {
         // குறிஞ்சிப்பாட்டு
-        fullTextTa: `குறிஞ்சிப்பாட்டு - முழு பாடல்
+        fullTextTa: `குறிஞ்சிப்பாட்டு - முழு பாடல் வரிகள் (சுருக்கம்)
 
-தொடக்கம்:
-குறிஞ்சி நிலம் - மலை பகுதி
-குளிர்ந்த காலநிலை
-அழகான இயற்கை
-தனித்துவமான வாழ்க்கை
+மலைப்பகுதியின் இயற்கை அழகு மற்றும் காதலை விவரிக்கும் 261 வரிகள் கொண்ட நூல்.
 
-மலைநில வாழ்க்கை:
-மலையில் வாழும் மக்கள்
-தேன் சேகரிப்பர்
-விலங்குகளை வேட்டையாடுவர்
-எளிமையாக வாழ்வர்
+முக்கிய பகுதிகள்:
+1. கபிலரின் இயற்கை வர்ணனை
+2. 99 வகையான தமிழ் மலர்களின் பட்டியல்
+3. தலைவன் தலைவியின் முதல் சந்திப்பு
+4. மலைவாழ் மக்களின் வாழ்க்கை முறை
+5. தமிழரின் திருமண மரபுகள்
 
-காதல் கதை:
-பிறை மன்னன் காதல்
-அரசி மலைப் பெண்
-இருவரும் காதல் கொண்டனர்
-மலையில் வாழ்ந்தனர்
+[முழு வரிகள் விரைவில் சேர்க்கப்படும்...]`,
 
-இறுதி:
-மலைநில காதல் தனித்துவமானது
-இயற்கையுடன் இணைந்த வாழ்க்கை
-எளிமையில் இன்பம்
-காதலில் மகிழ்ச்சி`,
+        fullTextEn: `Kurinjippattu - Full Text (Summary)
 
-        fullTextEn: `Kurinjippattu - Full Text
+A 261-line poem describing the natural beauty and romantic life in the mountain regions.
 
-Beginning:
-Kurinji land - mountain region
-Cool climate
-Beautiful nature
-Unique life
+Key Sections:
+1. Kapilar's vivid nature descriptions
+2. The famous list of 99 traditional Tamil flowers
+3. The first meeting of the hero and heroine
+4. Lifestyle of the mountain tribes
+5. Tamil traditions of marriage and chastity.
 
-Mountain Life:
-People living in mountains
-They collect honey
-They hunt animals
-They live simply
-
-Love Story:
-King Pirai's love
-Queen is a mountain girl
-Both fell in love
-They lived in the mountains
-
-Conclusion:
-Mountain love is unique
-Life united with nature
-Joy in simplicity
-Happiness in love`,
+[Complete 261 lines will be added soon...]`,
 
         sampleVersesTa: [
-            "குறிஞ்சி நிலம் - மலை பகுதி குளிர்ந்த காலநிலை",
-            "பிறை மன்னன் காதல் அரசி மலைப் பெண்",
-            "எளிமையில் இன்பம் காதலில் மகிழ்ச்சி"
+            "செங்காந்தள், ஆம்பல், அனிச்சம் - 99 வகை மலர்கள்",
+            "குறிஞ்சி நில வாழ்க்கை - காதலும் வீரமும்",
+            "கபிலரின் இயற்கை ஓவியம் - வார்த்தைகளால் செதுக்கப்பட்டவை"
         ],
 
         sampleVersesEn: [
-            "Kurinji land - mountain region, cool climate",
-            "King Pirai's love, queen is a mountain girl",
-            "Joy in simplicity, happiness in love"
+            "Senganthal, Ambal, Anicham - 99 types of flowers",
+            "Life in Kurinji land - love and bravery",
+            "Kapilar's nature portrait - carved with words"
         ],
 
         audioUrl: "https://archive.org/download/tamil-classical-music/kurinjippattu.mp3",
         audioNote: "Traditional recitation"
     },
 
-    10: {
+    9: {
         // பட்டினப்பாலை
-        fullTextTa: `பட்டினப்பாலை - முழு பாடல்
+        fullTextTa: `பட்டினப்பாலை - முழு பாடல் வரிகள் (சுருக்கம்)
 
-தொடக்கம்:
-காவிரிப்பூம்பட்டினம் - துறைமுக நகரம்
-சோழர் தலைநகர்
-வணிகம் செழிக்கும் இடம்
-கடல் வாணிபம் நடைபெறும் மையம்
+காவிரிப்பூம்பட்டினம் மற்றும் கரிகாலச் சோழனின் சிறப்புகளைப் பாடும் 301 வரிகள் கொண்ட நூல்.
 
-துறைமுக வாழ்க்கை:
-கப்பல்கள் வருகின்றன
-வணிகர்கள் கூடுகின்றனர்
-பொருட்கள் விற்கப்படுகின்றன
-செல்வம் குவிகிறது
+முக்கிய பகுதிகள்:
+1. காவிரி நகரின் செழிப்பு (புகார்)
+2. கடல் வணிகம் மற்றும் ஏற்றுமதி இறக்குமதி
+3. வணிகர்களின் நாணயம் மற்றும் நேர்மை
+4. கரிகாலனின் வீரமும் வெற்றிகளும்
+5. தலைவன் தன் காதலியை விட்டுப் பிரிய மறுத்தல்
 
-கடல் வணிகம்:
-வெளிநாட்டு வணிகர்கள்
-தங்கம் முத்து கொண்டு வருவர்
-பட்டு மிளகு எடுத்துச் செல்வர்
-நகரம் செழிப்படைகிறது
+[முழு வரிகள் விரைவில் சேர்க்கப்படும்...]`,
 
-இறுதி:
-கடல் வாணிபம் வளர்ச்சி தரும்
-துறைமுக நகரம் சிறக்கும்
-தமிழர் வணிகம் உலகம் முழுதும்
-புகழ் பரவும்`,
+        fullTextEn: `Pattinappalai - Full Text (Summary)
 
-        fullTextEn: `Pattinappalai - Full Text
+A 301-line poem praising the prosperity of Kaviripattinam and the greatness of Chola king Karikalan.
 
-Beginning:
-Kaviripattinam - port city
-Chola capital
-Place where commerce flourishes
-Center of maritime trade
+Key Sections:
+1. Prosperity of the port city Puhar
+2. Maritime trade and international exports
+3. Honesty and integrity of the merchants
+4. Karikalan's valor and military conquests
+5. The hero refusing to leave his beloved for wealth.
 
-Port Life:
-Ships arrive
-Merchants gather
-Goods are sold
-Wealth accumulates
-
-Maritime Trade:
-Foreign merchants
-Bring gold and pearls
-Take silk and pepper
-City prospers
-
-Conclusion:
-Maritime trade brings development
-Port city flourishes
-Tamil commerce worldwide
-Fame spreads`,
+[Complete 301 lines will be added soon...]`,
 
         sampleVersesTa: [
-            "காவிரிப்பூம்பட்டினம் - துறைமுக நகரம் சோழர் தலைநகர்",
-            "கப்பல்கள் வருகின்றன வணிகர்கள் கூடுகின்றனர்",
-            "தமிழர் வணிகம் உலகம் முழுதும் புகழ் பரவும்"
+            "காவிரிப்பூம்பட்டினம் - வணிகம் மிகும் சோழர் தலைநகர்",
+            "கப்பல்கள் வந்து செல்லும் துறைமுகம் - செல்வம் செழிக்கும் இடம்",
+            "நேர்மையான வணிகர்கள் - தரம் குறையாப் பொருட்கள்"
         ],
 
         sampleVersesEn: [
-            "Kaviripattinam - port city, Chola capital",
-            "Ships arrive, merchants gather",
-            "Tamil commerce worldwide, fame spreads"
+            "Kaviripattinam - Chola capital of trade",
+            "Harbor where ships arrive - place of great wealth",
+            "Honest merchants - quality goods without compromise"
         ],
 
         audioUrl: "https://archive.org/download/tamil-classical-music/pattinappalai.mp3",
+        audioNote: "Traditional recitation"
+    },
+
+    10: {
+        // மலைபடுகடாம்
+        fullTextTa: `மலைபடுகடாம் - முழு பாடல் வரிகள் (சுருக்கம்)
+
+மலையில் ஒலிக்கும் இசை மற்றும் ஓசைகளை மதயானையின் பிளிறலுக்கு ஒப்பிட்டுக் கூறும் 583 வரிகள் கொண்ட நூல்.
+
+முக்கிய பகுதிகள்:
+1. சங்கீதம் மற்றும் இசைக்கருவிகளின் வர்ணனை
+2. மலைக்கோட்டையின் இயற்கை அதிசயங்கள்
+3. நன்னன் என்ற சிற்றரசனின் கொடைத்திறன்
+4. கூத்தர்கள் ஒருவருக்கொருவர் வழிகாட்டுதல்
+5. மலைப்பகுதியின் வாழ்வாதாரம்
+
+[முழு வரிகள் விரைவில் சேர்க்கப்படும்...]`,
+
+        fullTextEn: `Malaipadukadam - Full Text (Summary)
+
+A 583-line poem comparing mountain echoes to the sounds of a musth elephant, also known as Koothararruppadai.
+
+Key Sections:
+1. Descriptions of musical instruments and songs
+2. Natural wonders of the mountain fortress
+3. Generosity of the chieftain Nannan
+4. Dancers directing each other to the patron
+5. Resources and livelihood in the mountains.
+
+[Complete 583 lines will be added soon...]`,
+
+        sampleVersesTa: [
+            "மலைபடுகடாம் - மலையில் பிறக்கும் ஓசைகள்",
+            "நன்னன் சேய் நன்னன் - வள்ளல் தன்மை மிக்க அரசன்",
+            "கூத்தர்களின் பயணம் - கலையையும் வாழ்வையும் தேடி"
+        ],
+
+        sampleVersesEn: [
+            "Malaipadukadam - sounds born from the mountains",
+            "Nannan son of Nannan - the benevolent king",
+            "Journey of the dancers - seeking art and life"
+        ],
+
+        audioUrl: "https://archive.org/download/tamil-classical-music/malaipadukadam.mp3",
         audioNote: "Traditional recitation"
     }
 };
