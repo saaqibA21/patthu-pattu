@@ -75,20 +75,21 @@ INSTRUCTIONS:
 1. Identify yourself as Pattu LLM if asked about your identity or name.
 2. Acknowledge your creators as "Mohammed Saaqib and his team" if asked about your founder, creator, or who made you.
 3. Synthesize a professional, smooth answer. DO NOT just list chunks.
-4. If in Tamil, use modern literary Tamil that is easy to understand but retains scholarly depth. Ensure archaic Tamil is explained with simplified meanings.
-5. Provide a "Simplified Meaning" (எளிய விளக்கம்) section whenever the query involves understanding literature or poems.
-6. Use the data as the primary evidence. If they refer to specific page numbers, respect those contexts.
-7. Format with bold terms and bullet points where helpful.
-8. If the question is in English, answer in English. If in Tamil, answer in Tamil.
+4. ALWAYS answer in Tamil (தமிழில்), even if the question is in English. This is a strict requirement.
+5. If asked for the lines of a song (பாடல் வரிகள்), provide the full original lines found in the context. DO NOT summarize them unless specifically asked.
+6. Use modern literary Tamil that is easy to understand but retains scholarly depth. Ensure archaic Tamil is explained with simplified meanings.
+7. Provide a "Simplified Meaning" (எளிய விளக்கம்) section whenever the query involves understanding literature or poems.
+8. Use the data as the primary evidence. If they refer to specific page numbers, respect those contexts.
+9. Format with bold terms and bullet points where helpful.
 
-MASTERFUL RESPONSE:"""
+MASTERFUL RESPONSE (IN TAMIL ONLY):"""
 
     try:
         response = openai_client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.2,
-            max_tokens=800 # Increased generation tokens slightly for simplified meanings
+            max_tokens=1000 # Increased generation tokens for full lines and simplified meanings
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
@@ -119,17 +120,19 @@ LOCAL DATA:
 USER QUESTION: {question}
 
 INSTRUCTIONS:
-1. Identify yourself as Pattu LLM if asked.
-2. Acknowledge your creators "Mohammed Saaqib and his team" if asked about your founder/creator.
-3. Synthesize a professional answer from the scans. Connect archaic meanings with simple modern Tamil words.
-4. If in Tamil, use modern literary Tamil. Include a "Simplified Meaning" section if explaining poems.
-5. Be professional and detailed. Provide easy-to-understand explanations.
+1. ALWAYS answer in Tamil (தமிழில்), even if the question is in English.
+2. Identify yourself as Pattu LLM if asked.
+3. Acknowledge your creators "Mohammed Saaqib and his team" if asked.
+4. If asked for song lines, provide the original Tamil lines from the context.
+5. Synthesize a professional answer from the scans. Connect archaic meanings with simple modern Tamil words.
+6. Include a "Simplified Meaning" (எளிய விளக்கம்) section if explaining poems.
+7. Be professional and detailed. Provide easy-to-understand explanations.
 
-ANSWER:"""
+ANSWER (IN TAMIL ONLY):"""
 
     payload = json.dumps({
         "contents": [{"parts": [{"text": prompt}]}]
-    }).encode()
+    }).encode("utf-8") # Explicitly use utf-8 for safety
 
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
     
@@ -142,7 +145,7 @@ ANSWER:"""
     
     try:
         with urllib.request.urlopen(req, timeout=30) as resp:
-            result = json.loads(resp.read())
+            result = json.loads(resp.read().decode("utf-8")) # Explicitly use utf-8 for safety
         if "candidates" in result and result["candidates"]:
             return result["candidates"][0]["content"]["parts"][0]["text"].strip()
     except Exception as e:
@@ -296,59 +299,83 @@ def info():
 
 @app.route("/ask", methods=["POST"])
 def ask():
-    data = request.json
-    q = data.get("question", "").strip()
-    history = data.get("history", [])
-    
-    # Check cache first (for exact matches)
-    if q in response_cache:
-        print(f"⚡ Cache Hit for: {q[:30]}...")
-        return jsonify(response_cache[q])
-
-    # If conversational follow up, merge last question with this for retrieval
-    search_q = q
-    if history and len(q.split()) < 4:
-        search_q = f"{history[-1].get('question', '')} {q}"
-        
-    results = model.search(search_q, top_k=5) # Reduced from 8 for speed
-    pages = sorted(set(r["page"] for r in results))
-    context = "\n".join([f"[Page {r['page']}] {r['text']}" for r in results])
-    context = context[:4000] # Cap context for faster processing
-    
-    # Priority 1: OpenAI
-    ans = try_openai(q, context, history)
-    engine = "Pattu LLM (OpenAI)"
-    
-    # Priority 2: Gemini
-    if not ans and GEMINI_KEY:
-        ans = try_gemini(q, context, GEMINI_KEY, history)
-        engine = "Pattu LLM (Gemini)"
-    
-    # Fallback: Smart Formatter
-    if not ans:
-        ans = smart_format(q, results)
-        engine = "Pattu Local Extractor"
-    
-    # Store in cache
-    response_cache[q] = {"answer": ans, "pages": pages, "engine": engine}
-    
-    # --- SAVE INTERACTION FOR FINE-TUNING ---
+    """Main route for the AI Chatbot with synthesis and RAG."""
     try:
-        dataset_entry = {
-            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-            "question": q,
-            "pages_retrieved": pages,
-            "context_used": context,
-            "answer": ans,
-            "engine": engine
-        }
-        with open("qa_dataset.jsonl", "a", encoding="utf-8") as f:
-            f.write(json.dumps(dataset_entry, ensure_ascii=False) + "\n")
-        print(f"💾 Saved Q&A to qa_dataset.jsonl for future fine-tuning!")
-    except Exception as e:
-        print(f"Error saving dataset: {e}")
+        data = request.json
+        if not data or "question" not in data:
+            return jsonify({"answer": "கேள்வி ஏதுமில்லை.", "pages": [], "engine": "Error"})
         
-    return jsonify(response_cache[q])
+        q = data.get("question", "").strip()
+        history = data.get("history", []) # Recent conversation for context
+        
+        # Check cache first for exact matches
+        if q in response_cache:
+            print(f"⚡ Cache Hit for: {q[:30]}...")
+            return jsonify(response_cache[q])
+
+        print(f"--- Question received: {q[:50]}... ---")
+        
+        # 1. RETRIEVE RELEVANT CONTEXT (RAG)
+        # Increase top_k to 10 for better song line coverage
+        results = model.search(q, top_k=10)
+        pages = sorted(list(set(r["page"] for r in results)))
+        
+        context_parts = []
+        for r in results:
+            context_parts.append(f"[Page {r['page']}]: {r['text']}")
+        
+        context = "\n\n".join(context_parts)
+        context = context[:8000] # Increased context window
+        
+        # 2. GENERATE ANSWER (Try OpenAI -> Gemini -> Fallback)
+        ans = try_openai(q, context, history)
+        engine = "Pattu LLM (OpenAI)"
+        
+        if not ans:
+            # Try Gemini if OpenAI fails
+            if GEMINI_KEY:
+                ans = try_gemini(q, context, GEMINI_KEY, history)
+                engine = "Pattu LLM (Gemini)"
+        
+        if not ans:
+            # Last fallback: Local formatting
+            ans = smart_format(q, results)
+            engine = "Pattu Local Extractor"
+        
+        # Store in cache
+        res_obj = {"answer": ans, "pages": pages, "engine": engine}
+        response_cache[q] = res_obj
+        
+        # 3. SAVE INTERACTION FOR FINE-TUNING
+        try:
+            dataset_entry = {
+                "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+                "question": q,
+                "pages_retrieved": pages,
+                "answer": ans,
+                "engine": engine,
+                "has_context": len(results) > 0
+            }
+            with open("qa_dataset.jsonl", "a", encoding="utf-8") as f:
+                f.write(json.dumps(dataset_entry, ensure_ascii=False) + "\n")
+        except Exception as log_e:
+            print(f"Log Error: {log_e}")
+            
+        return jsonify(res_obj)
+        
+    except Exception as e:
+        error_msg = f"Fatal Error in /ask: {str(e)}"
+        print(error_msg)
+        with open("error_log.txt", "a", encoding="utf-8") as f:
+            f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} - {error_msg}\n")
+        return jsonify({
+            "answer": "மன்னிக்கவும், சர்வரில் பிழை ஏற்பட்டுள்ளது (Server Error). AI மூளை தற்போது பணிகளில் உள்ளது, சிறிது நேரம் கழித்து மீண்டும் முயலவும்.",
+            "pages": [],
+            "engine": "Error"
+        })
 
 if __name__ == "__main__":
-    app.run(port=5000)
+    # Ensure dependencies are loaded
+    model.load()
+    print("✅ Pattu LLM Server is READY on port 5000")
+    app.run(port=5000, host="0.0.0.0")

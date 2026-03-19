@@ -29,7 +29,7 @@ app.post('/api/chat', async (req, res) => {
 
         // Check if Python server is up with a longer timeout for AI thinking
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 12000); // 12 seconds
+        const timeoutId = setTimeout(() => controller.abort(), 45000); // Increased to 45 seconds for complex Tamil responses
 
         try {
             const response = await fetch(`http://localhost:5000/ask`, {

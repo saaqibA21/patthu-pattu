@@ -1125,3 +1125,13 @@ window.toggleSpeak = function (btn, text) {
 
     window.speechSynthesis.speak(utter);
 };
+
+// ==========================================
+// AI INTEGRATION - CONNECTING PATTU LLM
+// ==========================================
+if (typeof sendMessageAI === 'function') {
+    window.sendMessage = sendMessageAI;
+    console.log("✅ Chatbot Integrated with Pattu LLM AI Engine.");
+} else {
+    console.warn("⚠️ Pattu LLM AI Engine (ai_chatbot.js) not found. Using simple fallback.");
+}
