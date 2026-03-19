@@ -293,69 +293,243 @@ Tamil literature rises`,
     },
 
     5: {
-        // முல்லைப்பாட்டு
-        fullTextTa: `முல்லைப்பாட்டு - முழு பாடல்
+        // முல்லைப்பாட்டு - Complete 103 lines
+        fullTextTa: `முல்லைப்பாட்டு - முழு பாடல் (103 அடிகள்)
 
-தொடக்கம்:
-முல்லை நிலம் - காடும் காடு சார்ந்த பகுதியும்
-மழை பெய்து பசுமை நிறைந்த நிலம்
-ஆநிரைகள் மேயும் இடம்
-இடையர் வாழும் பகுதி
+கவிஞர்: காவிரிப்பூம்பட்டினத்துப் பொன்வணிகனார் மகனார் நப்பூதனார்
+பாடப்பட்டவன்: தலையாலங்கானத்துச் செருவென்ற நெடுஞ்செழியன்
 
-காத்திருப்பு:
-கணவன் போருக்குச் சென்றான்
-மனைவி வீட்டில் காத்திருக்கிறாள்
-நாட்கள் கடந்து செல்கின்றன
-மனம் வருந்துகிறாள்
+நனந்தலை உலகம் வளைஇ, நேமியொடு
+வலம்புரி பொறித்த மா தாங்கு தடக்கை
+நீர் செல நிமிர்ந்த மாஅல் போல,
+பாடு இமிழ் பனிக்கடல் பருகி, வலன் ஏர்பு,
+கோடு கொண்டு எழுந்த கொடுஞ் செலவு எழிலி,        5
+பெரும் பெயல் பொழிந்த சிறு புன்மாலை
+அருங்கடி மூதூர் மருங்கில் போகி,
+யாழ் இசை இன வண்டு ஆர்ப்ப, நெல்லொடு
+நாழி கொண்ட நறு வீ முல்லை
+அரும்பு அவிழ் அலரி தூஉய்க் கைதொழுது,        10
+பெருமுது பெண்டிர் விரிச்சி நிற்பச்,
+சிறு தாம்பு தொடுத்த பசலைக் கன்றின்
+உறு துயர் அலமரல் நோக்கி, ஆய்மகள்
+நடுங்கு சுவல் அசைத்த கையள், "கைய
+கொடுங்கோல் கோவலர் பின் நின்று உய்த்தர,        15
+இன்னே வருகுவர் தாயர்" என்போள்
+நன்னர் நன்மொழி கேட்டனம், அதனால்,
+நல்ல நல்லோர் வாய்ப்புள், தெவ்வர்
+முனை கவர்ந்து கொண்ட திறையர் வினை முடித்து
+வருதல் தலைவர் வாய்வது, நீ நின்        20
+பருவரல் எவ்வம் களை மாயோய், எனக்
+காட்டவும் காட்டவும் காணாள், கலுழ் சிறந்து
+பூப்போல் உண்கண் புலம்பு முத்து உறைப்பக்,
+கான்யாறு தழீஇய அகல் நெடும் புறவில்,
+சேண் நாறு பிடவமொடு பைம் புதல் எருக்கி,        25
+வேட்டுப்புழை அருப்பம் மாட்டிக் காட்ட
+இடுமுள் புரிசை ஏமுற வளைஇப்,
+படு நீர்ப் புணரியின் பரந்த பாடி.
+உவலைக் கூரை ஒழுகிய தெருவில்,
+கவலை முற்றம் காவல் நின்ற        30
+தேம்படு கவுள சிறு கண் யானை,
+ஓங்கு நிலைக் கரும்பொடு கதிர் மிடைந்து யாத்த
+வயல் விளை இன்குளகு உண்ணாது, நுதல் துடைத்து,
+அயில் நுனை மருப்பின் தம் கையிடைக் கொண்டெனக்,
+கவை முள் கருவியின் வடமொழி பயிற்றிக்        35
+கல்லா இளைஞர் கவளம் கைப்பக்,
+கல் தோய்த்து உடுத்த படிவப் பார்ப்பான்
+முக்கோல் அசை நிலை கடுப்ப, நல்போர்
+ஓடா வல்வில் தூணி நாற்றிக்,
+கூடம் குத்திக் கயிறு வாங்கு இருக்கைப்        40
+பூந்தலைக் குந்தம் குத்திக் கிடுகு நிரைத்து,
+வாங்கு வில் அரணம் அரணமாக,
+வேறு பல் பெரும்படை நாப்பண், வேறு ஓர்
+நெடுங்காழ்க் கண்டம் கோலி அகம் நேர்பு
+குறுந்தொடி முன் கை கூந்தல் அம் சிறுபுறத்து,        45
+இரவு பகல் செய்யும் திண் பிடி ஒள் வாள்
+விரவு வரிக் கச்சின் பூண்ட மங்கையர்,
+நெய் உமிழ் சுரையர், நெடுந்திரிக் கொளீஇக்,
+கை அமை விளக்கம் நந்துதொறும் மாட்ட,
+நெடு நா ஒண் மணி நிழத்திய நடுநாள்,        50
+அதிரல் பூத்த ஆடு கொடிப் படாஅர்
+சிதர் வரல் அசை வளிக்கு அசைவந்தாங்குத்,
+துகில் முடித்துப் போர்த்த தூங்கல் ஓங்கு நடைப்
+பெரு மூதாளர் ஏமம் சூழ,
+பொழுது அளந்து அறியும் பொய்யா மாக்கள்,        55
+தொழுது காண்கையர் தோன்ற வாழ்த்தி,
+"எறிநீர் வையகம் வெலீஇய செல்வோய்! நின்
+குறு நீர்க் கன்னல் இனைத்து" என்று இசைப்ப
+மத்திகை வளைஇய மறிந்து வீங்கு செறிவுடை
+மெய்ப்பை புக்க, வெருவரும் தோற்றத்து,        60
+வலி புணர் யாக்கை வன்கண் யவனர்
+புலித்தொடர் விட்ட, புனை மாண் நல் இல்,
+திரு மணி விளக்கம் காட்டி, திண் ஞாண்
+எழினி வாங்கிய ஈரறைப் பள்ளியுள்,
+உடம்பின் உரைக்கும் உரையா நாவின்        65
+படம் புகு மிலேச்சர் உழையர் ஆக,
+மண்டு அமர் நசையொடு, கண்படை பெறாஅது,
+எடுத்து எறி எஃகம் பாய்தலின் புண் கூர்ந்து
+பிடிக் கணம் மறந்த வேழம், வேழத்துப்
+பாம்பு பதைப்பன்ன பரூஉக்கை துமியத்,        70
+தேம்பாய் கண்ணி நல் வலம் திருத்திச்
+சோறு வாய்த்து ஒழிந்தோர் உள்ளியும், தோல் துமிபு
+வைந்நுனைப் பகழி மூழ்கலின் செவி சாய்த்து
+உண்ணாது உயங்கும் மா சிந்தித்தும்,
+ஒரு கை பள்ளி ஒற்றி, ஒருகை        75
+முடியொடு கடகம் சேர்த்தி, நெடிது நினைந்து,
+பகைவர் சுட்டிய படைகொள் நோன் விரல்,
+நகை தாழ்க் கண்ணி நல் வலம் திருத்தி,
+அரசு இருந்த பனிக்கும் முரசு முழங்கு பாசறை
+இன் துயில் வதியுநன் காணாள், துயர் உழந்து,        80
+நெஞ்சை ஆற்றுப்படுத்த, நிறைதபு புலம்பொடு,
+நீடு நினைந்து, தேற்றியும், ஓடு வளை திருத்தியும்,
+மையல் கொண்டும், ஒய்யென உயிர்த்தும்,
+ஏ உறு மஞ்ஞையின் நடுங்கி, இழை நெகிழ்ந்து,
+பாவை விளக்கில் பரூஉச் சுடர் அழல,        85
+இடம் சிறந்து உயரிய எழு நிலை மாடத்து,
+முடங்கு இறைச் சொரிதரும் மாத் திரள் அருவி
+இன்பல் இமிழிசை ஓர்ப்பனள் கிடந்தோள்
+அஞ்செவி நிறைய ஆலின
+வென்று பிறர்        90
+வேண்டு புலம் கவர்ந்த ஈண்டு பெருந்தானையொடு
+விசயம் வெல் கொடி உயரி வலன் ஏர்பு
+வயிரும் வளையும் ஆர்ப்ப அயிர
+செறி இலைக் காயா அஞ்சனம் மலர
+முறி இணர்க் கொன்றை நன் பொன் கால        95
+கோடல் குவி முகை அங்கை அவிழ
+தோடு ஆர் தோன்றி குருதி பூப்ப
+கானம் நந்திய செந்நிலப் பெருவழி
+வானம் வாய்த்த வாங்கு கதிர் வரகின்
+திரி மருப்பு இரலையொடு மடமான் உகள        100
+எதிர் செல் வெண்மழை பொழியும் திங்களில்
+முதிர் காய் வள்ளியங்காடு பிறக்கொழியத்
+துனை பரி துரக்கும் செலவினர்
+வினை விளங்கு நெடுந்தேர் பூண்ட மாவே.        103
 
-இயற்கை அழகு:
-மரங்கள் பசுமையாக உள்ளன
-பூக்கள் மலர்ந்து நிற்கின்றன
-பறவைகள் கூவி அழைக்கின்றன
-ஆறுகள் ஓடி வருகின்றன
+முற்றும்`,
 
-இறுதி:
-கணவன் திரும்பி வருவான்
-மனைவி மகிழ்ச்சி அடைவாள்
-காதல் மீண்டும் மலரும்
-வாழ்க்கை இனிமையாகும்`,
+        fullTextEn: `Mullaipattu - Complete Text (103 lines)
 
-        fullTextEn: `Mullaipattu - Full Text
+Poet: Napputanar (Son of Ponvanikar of Kaviripattinam)
+Patron: Nedunchezhiyan who won at Thalaiyalanganam
 
-Beginning:
-Mullai land - forest and forest-adjacent areas
-Rain-fed green land
-Place where cattle graze
-Area where shepherds live
-
-Waiting:
-Husband went to war
-Wife waits at home
-Days pass by
-Heart grieves
-
-Natural Beauty:
-Trees are green
-Flowers bloom
-Birds call out
-Rivers flow
-
-Conclusion:
-Husband will return
-Wife will rejoice
-Love will bloom again
-Life will be sweet`,
+Clouds that absorbed water from the roaring,
+cold ocean rose up with strength up to the
+mountains with great speed, appearing like
+Thirumāl who protects the vast earth
+bearing a discus and right-twisted conch shell,        5
+Heavy rains fell during the painful evening hours.
+Elderly women went near the well-protected
+ancient town carrying rice paddy and mullai
+flowers in their bowls, and prayed with their
+palms pressed together, sprinkling newly opened,        10
+fragrant mullai blossoms as swarming bees
+hummed like yāzh music, and waited for a good omen.
+A young calf tied to a small rope was in
+deep distress. On seeing that, a herder
+woman with arms clasped around her        15
+shoulders said, "Your mothers
+will come soon, nudged behind by herders
+with rods with curved ends."
+The elderly women who heard that, took it as a good omen:
+"We've heard very good words. Your        20
+husband will return with tributes from
+his enemies, for sure. His work has ended.
+O dark woman! Get rid of your sorrow."
+Confused, she ignored their constant consolation,
+and pearl-like tears dropped from her        25
+kohl-lined, flower-like eyes.
+The army destroyed a gated fort built by hunters
+and cleared jasmine bushes bearing flowers
+fragrant from afar, and other green bushes,
+in the huge thicket surrounded by forest streams.        30
+They constructed a battle camp as large as the
+ocean with loud waves, surrounded by thorn fences.
+In the camp's orderly street with frond roofs,
+at the junction stood a small-eyed guard elephant
+with sweet musth dripping from its cheeks.        35
+It refused to eat sweet sugarcane and paddy,
+rubbed them on its forehead and placed its trunk
+on its sharp-tipped tusks. Its young trainer held
+a forked rod and fed it balls of rice,
+uttering words in a northern language.        40
+Bows of warriors who never showed their backs
+in battle were planted in the ground with quivers hung,
+appearing like the three staves of Vaishnava ascetics.
+Soldiers planted flower-adorned hand spears
+and hung rows of shields. Curved bows        45
+became a protective fence.
+Amidst different armies, a private chamber
+was created for the king with colorful curtains.
+Women with small bangles on forearms,
+hair cascading down beautiful small backs,        50
+tied bright swords to their breastcloths,
+poured oil from spouted containers,
+lit tall wicks and tended the lamps
+whenever they died down.
+Sounds from bright bells with long tongues        55
+ebbed at midnight. A turbaned, sleepy old guard
+wearing a cloak sways like wild jasmine vines
+attacked by wind and rain, protecting responsibly.
+The skilled, unfailing time-keepers worship
+the king with pressed palms, announcing,        60
+"O king who goes to battle to win the earth
+surrounded by splashing waters,
+your water clock tells us this time."
+Harsh Yavanars with fierce appearances,
+wearing bulging shirts tightly girdled,        65
+decorate the king's quarters with tiger pendants.
+The place is lit with gem-like bright lamps.
+Strong ropes and curtains create two rooms
+in the bed chamber. A Milecher guard
+wearing a shirt, unable to speak,        70
+stands nearby as sentinel.
+The king who loves battles is unable to sleep.
+He thinks about elephants wounded by
+piercing spears, their fat trunks cut off,
+writhing like chopped snakes.        75
+He thinks about loyal soldiers who gave
+their lives for the honey-flowing vanji garlands.
+He thinks about horses hurt by sharp arrows,
+tilting their ears in pain, unable to eat.
+One hand rests on the bed, the other        80
+on his braceleted head, thinking deeply.
+After crushing enemies with weapons
+held in strong hands, winning the battle
+befitting his bright vanji garland,
+his victory drums making enemy kings tremble,        85
+the satisfied king sleeps in the camp.
+Unable to see her husband, she is sad,
+trying to calm her heart. She fixes
+her slipping bangles, sighs with loud noises,
+trembles like a peacock pierced by an arrow,        90
+in her seven-storied mansion lit by figurine lamps.
+She listens to the sweet sounds of rainwater
+gushing down the curved eaves.
+The sounds fill her beautiful ears -
+After winning the war, seizing enemy land,        95
+the king returns with his huge army,
+victory flags raised high,
+vayir horns and conch shells blowing.
+In the mullai land, kāyā trees bloom dark like kohl,
+kondrai trees drop gold-like flowers,        100
+pointed kōdal buds open like palms,
+thōndri flowers blossom blood-red.
+The king rides his tall chariot home,
+leaving behind the valli vine forest. The End.`,
 
         sampleVersesTa: [
-            "முல்லை நிலம் - காடும் காடு சார்ந்த பகுதியும் மழை பெய்து பசுமை நிறைந்த நிலம்",
-            "கணவன் போருக்குச் சென்றான் மனைவி வீட்டில் காத்திருக்கிறாள்",
-            "காதல் மீண்டும் மலரும் வாழ்க்கை இனிமையாகும்"
+            "நனந்தலை உலகம் வளைஇ, நேமியொடு வலம்புரி பொறித்த மா தாங்கு தடக்கை",
+            "பெரும் பெயல் பொழிந்த சிறு புன்மாலை அருங்கடி மூதூர் மருங்கில் போகி",
+            "இன்னே வருகுவர் தாயர் என்போள் நன்னர் நன்மொழி கேட்டனம்",
+            "மண்டு அமர் நசையொடு, கண்படை பெறாஅது",
+            "வினை விளங்கு நெடுந்தேர் பூண்ட மாவே"
         ],
 
         sampleVersesEn: [
-            "Mullai land - forest and forest areas, rain-fed green land",
-            "Husband went to war, wife waits at home",
-            "Love will bloom again, life will be sweet"
+            "Clouds rose like Thirumāl who protects the vast earth bearing discus and conch",
+            "Heavy rains fell during the painful evening, elderly women went to pray",
+            "Your mothers will come soon - we heard good words, your husband will return",
+            "The king who loves battles is unable to sleep, thinking of his wounded warriors",
+            "The king rides his tall chariot home, horses yoked to the splendid war chariot"
         ],
 
         audioUrl: "https://archive.org/download/tamil-classical-music/mullaipattu.mp3",

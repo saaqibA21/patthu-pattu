@@ -452,7 +452,7 @@ console.log(`
 
 ARCHITECTURE:
 ✅ Advanced RAG (Retrieval-Augmented Generation)
-✅ Primary Brain: Custom Scholar Engine
+✅ Primary Brain: Custom Scholar Engine v2.0 (Mohammed Saaqib Edition)
 ✅ 814 Pages of Library Knowledge Base
 ✅ Automatic Language Detection
 
