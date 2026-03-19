@@ -88,8 +88,8 @@ MASTERFUL RESPONSE (IN TAMIL ONLY):"""
         response = openai_client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.2,
-            max_tokens=1000 # Increased generation tokens for full lines and simplified meanings
+            temperature=0.1, # Lower temperature for better accuracy in copy-pasting lines
+            max_tokens=3500 # Much higher tokens to allow full poems (100+ lines)
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
@@ -131,7 +131,11 @@ INSTRUCTIONS:
 ANSWER (IN TAMIL ONLY):"""
 
     payload = json.dumps({
-        "contents": [{"parts": [{"text": prompt}]}]
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {
+            "maxOutputTokens": 4096,
+            "temperature": 0.1
+        }
     }).encode("utf-8") # Explicitly use utf-8 for safety
 
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
@@ -316,16 +320,35 @@ def ask():
         print(f"--- Question received: {q[:50]}... ---")
         
         # 1. RETRIEVE RELEVANT CONTEXT (RAG)
-        # Increase top_k to 10 for better song line coverage
-        results = model.search(q, top_k=10)
+        # Increase top_k to 20 for better song line coverage
+        results = model.search(q, top_k=20)
+        
+        # SMART INJECTION: If user asks for specific songs, look for clean text files first
+        song_keywords = {
+            "mullaipattu": "TEXT_DATA/mullaipattu.txt",
+            "mullaipaattu": "TEXT_DATA/mullaipattu.txt",
+            "முல்லைப்பாட்டு": "TEXT_DATA/mullaipattu.txt",
+            "thirumurugaatruppadai": "TEXT_DATA/thirumurugaatruppadai.txt",
+            "திருமுருகாற்றுப்படை": "TEXT_DATA/thirumurugaatruppadai.txt"
+        }
+        
+        priority_context = ""
+        q_lower = q.lower()
+        for kw, path in song_keywords.items():
+            if kw in q_lower:
+                if os.path.exists(path):
+                    with open(path, "r", encoding="utf-8") as f:
+                        priority_context += f"\n=== FULL TEXT OF {kw.upper()} ===\n" + f.read() + "\n"
+                        print(f"🌟 Priority Context Injected: {path}")
+
         pages = sorted(list(set(r["page"] for r in results)))
         
         context_parts = []
         for r in results:
             context_parts.append(f"[Page {r['page']}]: {r['text']}")
         
-        context = "\n\n".join(context_parts)
-        context = context[:8000] # Increased context window
+        context = priority_context + "\n\n" + "\n\n".join(context_parts)
+        context = context[:40000] # Huge context window to support Maduraikanchi (782 lines)
         
         # 2. GENERATE ANSWER (Try OpenAI -> Gemini -> Fallback)
         ans = try_openai(q, context, history)
