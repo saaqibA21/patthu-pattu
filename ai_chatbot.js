@@ -103,6 +103,27 @@ class PathuPattuAI {
 
     async ask(userQuestion, language = 'ta') {
         try {
+            const q = userQuestion.toLowerCase();
+            
+            // PRIORITY: If user asks for full verses, try to get them from our local JS database first
+            // This is faster and ensures the user gets EXACTLY what's in pathu_pattu_texts.js
+            if (q.includes('full verses') || q.includes('முழு பாடல்') || q.includes('முழு வரிகள்') || q.includes('அனைத்து வரிகள்')) {
+                let bookId = null;
+                if (q.includes('mullaipattu') || q.includes('mullaipatu') || q.includes('முல்லைப்பாட்டு')) bookId = 5;
+                if (q.includes('thirumurugaatruppadai') || q.includes('thirumurugatrupadai') || q.includes('திருமுருகாற்றுப்படை')) bookId = 1;
+                // Add more if needed...
+
+                if (bookId && typeof pathuPattuTexts !== 'undefined' && pathuPattuTexts[bookId]) {
+                    const data = pathuPattuTexts[bookId];
+                    const answer = language === 'ta' 
+                        ? `### ${data.fullTextTa.split('\n')[0]}\n\n${data.fullTextTa}\n\n--- \n**எளிய விளக்கம்:** மேலே உள்ளது முழுமையான 103 அடிகள் கொண்ட முல்லைப்பாட்டு ஆகும்.`
+                        : `### ${data.fullTextEn.split('\n')[0]}\n\n${data.fullTextEn}\n\n--- \n**Note:** Above is the complete text retrieved from the local database.`;
+                    
+                    this.logInteraction(userQuestion, answer, language);
+                    return { answer, engine: 'Local Database (Fast)' };
+                }
+            }
+
             // Get the last 2 interactions for conversational memory
             const recentHistory = this.conversationHistory
                 .slice(-2)
@@ -186,7 +207,9 @@ class PathuPattuAI {
 
         // Check for book names
         for (let key in bookMatches) {
-            if (q.includes(key.toLowerCase()) || q.includes(key) || (q.includes('pattinappalai') && key === 'பட்டினப்பாலை')) {
+            if (q.includes(key.toLowerCase()) || q.includes(key) || 
+                (q.includes('mullaipatu') && key === 'முல்லைப்பாட்டு') ||
+                (q.includes('pattinappalai') && key === 'பட்டினப்பாலை')) {
                 return language === 'ta' ? bookMatches[key].ta : bookMatches[key].en;
             }
         }

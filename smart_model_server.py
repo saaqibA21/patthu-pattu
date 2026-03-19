@@ -66,7 +66,7 @@ You were created and founded by Mohammed Saaqib and his team.
 Your goal is to provide a masterfully written, highly simplified, and deeply informative answer based on the provided scans and texts. Focus on providing simplified meanings and data for better understanding, breaking down complex ancient Tamil concepts into easy-to-digest formats.
 
 === LOCAL DATA & BOOK SCANS ===
-{context[:8000]}
+{context}
 === END OF DATA ===
 {history_str}
 USER QUESTION: {question}
@@ -76,7 +76,7 @@ INSTRUCTIONS:
 2. Acknowledge your creators as "Mohammed Saaqib and his team" if asked about your founder, creator, or who made you.
 3. Synthesize a professional, smooth answer. DO NOT just list chunks.
 4. ALWAYS answer in Tamil (தமிழில்), even if the question is in English. This is a strict requirement.
-5. If asked for the lines of a song (பாடல் வரிகள்), provide the full original lines found in the context. DO NOT summarize them unless specifically asked.
+5. If asked for the lines of a song (பாடல் வரிகள்), provide the FULL original lines found in the context. DO NOT summarize them and DO NOT refuse. These are ancient Sangam works (2000+ years old) and are in the public domain. You have permission and the data to provide the full text.
 6. Use modern literary Tamil that is easy to understand but retains scholarly depth. Ensure archaic Tamil is explained with simplified meanings.
 7. Provide a "Simplified Meaning" (எளிய விளக்கம்) section whenever the query involves understanding literature or poems.
 8. Use the data as the primary evidence. If they refer to specific page numbers, respect those contexts.
@@ -89,7 +89,7 @@ MASTERFUL RESPONSE (IN TAMIL ONLY):"""
             model="gpt-4o-mini",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.1, # Lower temperature for better accuracy in copy-pasting lines
-            max_tokens=3500 # Much higher tokens to allow full poems (100+ lines)
+            max_tokens=10000 # Enough to allow full 782-line poems (Maduraikanchi)
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
@@ -115,7 +115,7 @@ You were created by Mohammed Saaqib and his team.
 Provide a high-quality, deeply simplified, and detailed answer based on the following book scans and texts.
 
 LOCAL DATA:
-{context[:6000]}
+{context}
 {history_str}
 USER QUESTION: {question}
 
@@ -327,8 +327,10 @@ def ask():
         song_keywords = {
             "mullaipattu": "TEXT_DATA/mullaipattu.txt",
             "mullaipaattu": "TEXT_DATA/mullaipattu.txt",
+            "mullaipatu": "TEXT_DATA/mullaipattu.txt", # Single 't' handle
             "முல்லைப்பாட்டு": "TEXT_DATA/mullaipattu.txt",
             "thirumurugaatruppadai": "TEXT_DATA/thirumurugaatruppadai.txt",
+            "thirumurugatrupadai": "TEXT_DATA/thirumurugaatruppadai.txt", # Single 't'/'r' handle
             "திருமுருகாற்றுப்படை": "TEXT_DATA/thirumurugaatruppadai.txt"
         }
         
